@@ -1,0 +1,251 @@
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\setlength{\parindent}{0ex}
+\usepackage{microtype}
+\usepackage{physics}
+\usepackage[most]{tcolorbox}
+\usepackage{xparse}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\hypersetup{colorlinks = true, linkcolor = blue, urlcolor = cyan}
+
+% Colours (from http://latexcolor.com)
+\definecolor{royalazure}{rgb}{0.0, 0.22, 0.66}
+\definecolor{beige}{rgb}{0.96, 0.96, 0.86}
+\definecolor{richlavender}{rgb}{0.67, 0.38, 0.8}
+\definecolor{cosmiclatte}{rgb}{1.0, 0.97, 0.91}
+\definecolor{lavenderblush}{rgb}{1.0, 0.94, 0.96}
+\definecolor{electriclavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{frenchrose}{rgb}{0.96, 0.29, 0.54}
+\definecolor{nadeshikopink}{rgb}{0.96, 0.68, 0.78}
+\definecolor{lawngreen}{rgb}{0.49, 0.99, 0.0}
+\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2}
+
+\newtcbtheorem[number within=section]{Def}{Definition}{
+   breakable, enhanced,
+   attach boxed title to top left={xshift=3mm, yshift=-3mm, yshifttext=-1mm},
+   coltitle=black,
+   colbacktitle=black!5,
+   fonttitle=\sffamily,
+   colback=white,
+   colframe=black,
+   leftrule=0.5mm,
+   rightrule=0.2mm,
+   toprule=0.2mm,
+   bottomrule=0.2mm,
+   arc=2.5mm,
+   separator sign={\ $\blacktriangleright$},
+   description delimiters none,
+   description font=\mdseries}{def}
+
+\newtcbtheorem[no counter]{Quote}{}{
+   breakable, enhanced,
+   attach boxed title to bottom right={xshift=-3mm, yshift=3mm, yshifttext=1mm},
+   fonttitle=\sffamily,
+   coltitle=black,
+   colbacktitle=cosmiclatte,
+   colback=black!10!white,
+   colframe=black,
+   arc=2.5mm,
+   separator sign none,
+   description delimiters none,
+   description font=\mdseries}{quote}
+
+\newtcbtheorem[number within=section]{Thm}{Theorem}{
+   breakable, enhanced,
+   attach boxed title to top left={xshift=3mm, yshift=-3mm, yshifttext=-1mm},
+   fonttitle=\sffamily,
+   coltitle=blue!70,
+   colbacktitle=white,
+   %colbacktitle=cosmiclatte,
+   colback=cyan!6,
+   colframe=blue!20,
+   separator sign none, description delimiters parenthesis,
+   description font=\mdseries}{th}
+
+\newtcbtheorem[no counter]{ThmN}{Theorem}{
+   breakable, enhanced,
+   attach boxed title to top left={xshift=3mm, yshift=-3mm, yshifttext=-1mm},
+   fonttitle=\sffamily,
+   coltitle=black,
+   colbacktitle=cosmiclatte,
+   colback=teal!6,
+   colframe=richlavender,
+   separator sign none, description delimiters parenthesis,
+   description font=\mdseries}{th}
+
+\newtcbtheorem[number within=section]{Lem}{Lemma}{
+   breakable, enhanced,
+   fonttitle=\sffamily,
+   coltitle = richlavender,
+   colbacktitle = cosmiclatte,
+   titlerule = 0mm,
+   colback = cosmiclatte,
+   colframe = electriclavender,
+   arc = 0mm,
+   leftrule = 2.5mm,
+   rightrule = 0mm,
+   toprule = 0mm,
+   bottomrule = 0mm,
+   separator sign none, description delimiters parenthesis}{lem}
+
+\newtcbtheorem[no counter]{LemN}{Lemma}{
+   breakable, enhanced,
+   fonttitle=\sffamily,
+   coltitle = richlavender,
+   colbacktitle = cosmiclatte,
+   titlerule = 0mm,
+   colback = cosmiclatte,
+   colframe = electriclavender,
+   arc = 0mm,
+   leftrule = 2.5mm,
+   rightrule = 0mm,
+   toprule = 0mm,
+   bottomrule = 0mm,
+   separator sign none, description delimiters parenthesis}{lem}
+
+\newtcbtheorem[no counter]{Cor}{Corollary}{
+   breakable, enhanced,
+   fonttitle=\sffamily,
+   colbacktitle = lavenderblush,
+   coltitle = frenchrose,
+   titlerule = 0mm,
+   colback = lavenderblush,
+   colframe = nadeshikopink,
+   arc = 4mm,
+   sharp corners = southwest,
+   sharp corners = northeast,
+   separator sign none, description delimiters parenthesis}{cor}
+
+
+% \newtcbtheorem[number within=section]{Eg}{\textbf{Example}}{
+%    breakable, enhanced,
+%    % attach boxed title to top left={xshift=3mm, yshift=-3mm, yshifttext=-1mm},
+%    fonttitle=\sffamily,
+%    coltitle=black,
+%    colbacktitle=white,
+%    colback=white,
+%    colframe=white,
+%    separator sign none, description delimiters parenthesis,
+%    description font=\mdseries}{eg}
+
+\newtcbtheorem[number within=section]{Eg}{Example}{
+   breakable, enhanced,
+   fonttitle=\sffamily,
+   coltitle = white,
+   titlerule = 0.5mm,
+   halign title = flush left,
+   halign = flush left,
+   colback = cosmiclatte,
+   colframe = nadeshikopink,
+   arc=2.5mm,
+   separator sign none, description delimiters parenthesis,
+   description font=\mdseries}{eg}
+
+\newtcbtheorem[number within=section]{Rem}{Remarks}{
+   breakable, enhanced,
+   fonttitle=\sffamily,
+   coltitle = black,
+   colbacktitle = black!5,
+   titlerule = 0mm,
+   colback = black!5,
+   colframe = gray,
+   arc = 0mm,
+   leftrule = 2.5mm,
+   rightrule = 0mm,
+   toprule = 0mm,
+   bottomrule = 0mm,
+   separator sign none, description delimiters parenthesis}{lem}
+
+\newtcolorbox{clmBox}{
+   title = \sbold{Claim},
+   coltitle = black,
+   titlerule = 0.5mm,
+   halign title = flush left,
+   halign = flush left,
+   colback = lavenderblush,
+   colframe = limegreen,
+   arc = 2mm}
+\newtcolorbox{notnBox}{
+   title = \sbold{ Notation},
+   coltitle = white,
+   titlerule = 0.5mm,
+   halign title = flush left,
+   halign = flush left,
+   colback = cosmiclatte,
+   colframe = black,
+   arc = 2mm}
+
+\newtcolorbox{noteBox}{
+   title = \sbold{ Note},
+   coltitle = white,
+   titlerule = 0.5mm,
+   halign title = flush left,
+   halign = flush left,
+   colback = lavenderblush,
+   colframe = black,
+   arc = 2mm}
+
+\newtcolorbox{probBox}{
+   colback = lavenderblush,
+   colframe = royalazure,
+   arc = 5mm,
+   leftrule = 2mm,
+   rightrule = 0.1mm,
+   toprule = 0.3mm,
+   bottomrule = 0.3mm,
+   sharp corners = northwest,
+   sharp corners = southwest}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{clm}[theorem]{Claim}
+
+\theoremstyle{remark}
+\newtheorem{examples}{Example}[theorem]
+
+\theoremstyle{definition}
+\newtheorem{prob}{Problem}
+
+\newenvironment{problem}{\begin{probBox} \begin{prob}}{\end{prob} \end{probBox}}
+\newenvironment{soln}{\vspace{0.1cm}\emph{Solution.}}{}
+% \newenvironment{thm}{\begin{theoremBox} \begin{theorem}}{\end{theorem} \end{theoremBox}}
+% \newenvironment{lem}{\begin{lemmaBox} \begin{lemma}}{ \end{lemma} \end{lemmaBox}}
+% \newenvironment{corr}{\begin{corrBox} \begin{corollary}}{ \end{corollary} \end{corrBox}}
+% \newenvironment{example}{\begin{exampleBox} \begin{examples}}{ \end{examples} \end{exampleBox}}
+% \newenvironment{claim}{\begin{clmBox} \begin{clm}}{ \end{clm} \end{clmBox}}
+
+\newcommand{\sbold}[1]{\textsf{\textbf{#1}}}
+\newcommand{\bb}[1]{\mathbbm{#1}}
+\newcommand{\N}{\bb{N}}
+\newcommand{\Z}{\bb{Z}}
+\newcommand{\Q}{\bb{Q}}
+\newcommand{\R}{\bb{R}}
+\newcommand{\C}{\bb{C}}
+\renewcommand{\S}[1][n]{\bb{S}^{#1}}
+\newcommand{\msk}{\medskip} % DON'T USE 
+\newcommand{\ssk}{\smallskip} % DON'T USE
+\newcommand{\bsk}{\bigskip} % DON'T USE
+\newcommand{\Qed}{\quad \blacksquare} % DON'T USE
+% \renewcommand{\qed}{\quad $ \blacksquare $}
+\newcommand{\contra}{\rightarrow \leftarrow} % DON'T USE
+
+% More math commands
+\newcommand{\ltag}[2]{\label{#1} \tag{#2}} % DON'T USE
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
+\newcommand{\inp}[2]{\left\langle {#1}, {#2} \right\rangle} % USE PHYSICS PACKAGE COMMAND
+\newcommand{\vphi}{\varphi} % DON'T USE
+\newcommand{\veps}{\varepsilon} % DON'T USE
