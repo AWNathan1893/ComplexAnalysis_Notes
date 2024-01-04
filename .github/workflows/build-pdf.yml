@@ -1,0 +1,82 @@
+name: Compile Latex and push to github pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**.yml"
+      - ".github/**.md"
+      - "**.tex"
+      - "**.pdf_tex"
+      - "**.sty"
+      - "**.bib"
+      - "**.cls"
+      - "**.pdf"
+      - "**.sh"
+      - "latexmkrc"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build_pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Cache the pdfs
+        id: cache-ra-3
+        uses: actions/cache@v3
+        with:
+          path: pdfs
+          key: ComplexAnalysis_Notes-${{ hashFiles('style.sty') }}-${{ hashFiles('**/*tex') }}-${{ hashFiles('**/*pdf_tex') }}-${{ hashFiles('**/*pdf') }}-${{ hashFiles('./latexmkrc') }}
+          restore-keys: |
+            ComplexAnalysis_Notes-${{ hashFiles('style.sty') }}-
+            ComplexAnalysis_Notes-${{ hashFiles('style.sty') }}-${{ hashFiles('**/*tex') }}-
+
+      - if: ${{ steps.cache-ra-3.outputs.cache-hit != 'true' }}
+        name: Compile the ComplexAnalysis_Notes.pdf
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: .
+          root_file: ./ComplexAnalysis_Notes.tex
+          latexmk_shell_escape: true
+
+      - if: ${{ steps.cache-ra-3.outputs.cache-hit != 'true' }}
+        name: Compile all the subfiles
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: ./lectures
+          root_file: "*.tex"
+          glob_root_file: true
+          latexmk_shell_escape: true
+
+      - if: ${{ steps.cache-ra-3.outputs.cache-hit != 'true' }}
+        name: Put pdfs in a single directory
+        run: bash ./.github/scripts/_pdf.sh
+
+      - name: Create _site
+        run: bash ./.github/scripts/_site.sh
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build_pdf
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
