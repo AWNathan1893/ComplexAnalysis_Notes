@@ -10,6 +10,96 @@
 
 
 \section{Introduction}
-Bal bichi initiated
+
+Our objective is to study functions $f : \C \to \C$. We know that as metric spaces $\C$ and $\R^2$ are isometric, with the natural map $(x,y) \mapsto x + i y$ being an isometry, but then what is the difference between analysis in $\R^2$ and analysis in $\C$? The difference arises because $\C$ is a field while $\R^2$ is not a field, thus we have a notion of multiplication and division in the complex plane. 
+
+Before going into further details we recall some of the obvious observations that one can make,
+\begin{enumerate}
+    \item (Triangle inequality). $||z_1| - |z_2|| \leq |z_1 - z_2|$. 
+    \item $|z| \geq \max \{ |x|, |y| \}$ where $z = x + iy$. 
+    \item $\{z_n\}_{n \in \N} \subseteq \C$ is a Cauchy sequence if and only if $\{(x_n,y_n)\}_{n \in \N} \subseteq \R^2$ is a Cauchy sequence, which is equivalent to $\{x_n\}_{n\in\N}$ and $\{y_n\}_{n\in\N}$ are Cauchy sequences. 
+    \item Let $f : \C \to \C$ be a function. Then $f$ is continuous (or limit exists) at a point $z_0=x_0 + i y_0$ if and only if $f : \R^2 \to \R^2$ viewed as a function from the real plane to the real plane is continuous (or limit exists) at $(x_0,y_0)$. 
+\end{enumerate}
+We haven't yet clarified how the analysis of $\C$ differs from the analysis of $\R^2$, the fact that $\C$ is a field gives us that $\frac{f(z) - f(z_0)}{z - z_0} \in \C$ for all $z \neq z_0$. Thus we can define the derivative of $f : \C \to C$ at $z_0$ as the complex number obtained by taking the limit $\lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}$ (provided the limit exists). Thus the derivative of $f : \C \to C$ at $z_0 \in \C$ is a complex number, while the derivative of $f : \R^2 \to \R^2$ (that is, the total derivative) is a $2 \times 2$ matrix. 
+
+This raises the following question let $f = u + i v$, then if we view $f = (u,v) : \R^2 \to \R^2$ we know
+\[
+    J_f(x_0,y_0) = Df(x_0,y_0) = \begin{bmatrix}
+        u_x(x_0,y_0) & u_y(x_0,y_0) \\ v_x(x_0,y_0) & v_y(x_0,y_0)
+    \end{bmatrix},    
+\] 
+is there any relation between $f'(z_0)$ (if it exists) and $J_f(x_0,y_0)$?
+
+\textbf{Homewok.} (another representation of $\C$). Let 
+\begin{equation}\label{eq1:lec1}
+    M = \left\{ \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \mid x,y \in \R  \right\} \subseteq M_2(\R)
+\end{equation}
+Show that $M$ is a field under matrix multiplication and is in fact isomorphic to $\C$. 
+
+The above assignment suggests there must be some representation of $f'(z_0)$ in terms of the Jacobian matrix $J_f(x_0,y_0)$, indeed there is some relation which we will discuss in a while. 
+
+\textbf{Notation.} $B_r(z_0) = \{ z \in \C \mid |z - z_0| < r \}$. 
+
+\begin{Def}{Holomorphic Functions.}{}
+    Let $\mathcal{O}$ be an open subset of $\C$, and let $f : \mathcal{O} \to \C$ be a function and $z_0 \in \mathcal{O}$. We say that $f$ is $\C$-\textbf{differentiable at} $z_0$ or \textbf{holomorphic at} $z_0$ if 
+    \[
+    \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} =: f'(z_0) \mbox{ exists.}    
+    \]
+    And we will say $f$ is \textbf{holomorphic on} $\mathcal{O}$ if $f$ is holomorphic at every point $z \in \mathcal{O}$. We will denote by 
+    \[
+        \mathrm{Hol}(\mathcal{O}) = \{ f : \mathcal{O} \to \C \mid f \mbox{ is holomorphic}\}.
+    \]
+    Then $\mathrm{Hol}(\mathcal{O})$ forms an algebra over $\C$. 
+ \end{Def}
+
+\begin{Lem}{Some Immediate Observations.}{}
+    Let $f,g : \mathcal{O} \to \C$ be holomorphic at $z_0$, then 
+    \begin{enumerate}
+        \item $f$ is continuous at $z_0$. 
+        \item $(\alpha f + g)'(z_0) = \alpha f'(z_0) + g'(z_0)$ for all $\alpha \in \C$. 
+    \end{enumerate}
+\end{Lem}
+
+\begin{Eg}{}{}
+    Some examples of holomorphic functions are $f(z) = z$, $f(z) = $ constant and $f(z) = z^2$, while $f(z) = \bar{z}$ is not a holomorphic function. Note that in $\R^2$ the function $f(z) = \bar{z}$ corresponds to the function $f(u,v) = (u,-v)$. But then we get that $Df(u,v) = \begin{bmatrix}
+        1 & 0 \\ 0 & -1
+    \end{bmatrix} \notin M$ (where $M$ is defined in equation \ref{eq1:lec1}). If we now consider the function $f(z) = z^2$, then in $\R^2$ it corresponds to the function $f(x,y) = (x^2 - y^2, 2xy)$ then $J_f(x,y) = \begin{bmatrix}
+        2x & -2y \\ 2y & 2x
+    \end{bmatrix} \in M$.   
+\end{Eg}
+
+The above example gives us the motivation to answer the problem we had raised earlier: how are the complex derivative and the Jacobian matrix related? 
+
+\section{Holomorphic versus Differentiable Functions.}
+
+For this discussion we will let $f = u + iv : \mathcal{O} \to \C$, let $z_0 = x_0 + i y_0$. Suppose $f$ is holomorphic at $z_0$, and let $\alpha = a + i b = f'(z_0)$. We then define the function for all $z \in B_r(z_0)$
+\begin{align*}
+    R(z) &= f(z) - f(z_0) - \alpha (z-z_0) \\ 
+         &= \underbrace{[u(z) - u(z_0) - a(x-x_0) + b(y-y_0)]}_{R_1(z)} + i \underbrace{[v(z) - v(z_0) - b(x-x_0) - a(y - y_0)]}_{R_2(z)}. 
+\end{align*}
+Now recall that $f : \R^2 \to \R^2$ is differentiable at $(x_0,y_0)$ if and only if 
+\[
+    \frac{R(x,y)}{\| (x,y) - (x_0,y_0) \|} \to 0 \mbox{ as } (x,y) \to (x_0,y_0).
+\]
+But we have 
+\[
+    \frac{R(z)}{|z-z_0|} = \frac{R_1(z)}{|z-z_0|} + i \frac{R(z)}{|z-z_0|},
+\]
+and we also know that $f$ is holomorphic at $z_0$ hence we get that 
+\[
+    \lim_{z \to z_0} \frac{R(z)}{|z-z_0|} = 0 \Leftrightarrow \lim_{z \to z_0} \frac{R_1(z)}{|z-z_0|} = \lim_{z \to z_0} \frac{R_2(z)}{|z-z_0|} = 0.     
+\]
+Thus it is equivalent to saying that $u,v : \mathcal{O} \to \R$ are differentiable at $(x_0,y_0)$ and we further have 
+\begin{align*}
+    & a = u_x = v_y \\ 
+    & b = v_x = - u_y.
+\end{align*}
+
+\begin{Thm}{Cauchy Riemann Equations}{}
+Let $f := u + iv : \mathcal{O} \to \C$ be a function and $z_0 \in \mathcal{O}$. Then $f$ is holomorphic at $z_0$ if and only if $u,v : \mathcal{O} \to \R$ is differentiable at $z_0$ and $u_x = v_y$ and $u_y = - v_x$. These are called the Cauchy Riemann Equations, thus we have 
+\begin{align*}
+    u_x = v_y, \ u_y = -v_x \quad \mbox{ and } \quad f'(z_0) = u_x(z_0) + i v_x(z_0).
+\end{align*}
+\end{Thm}
 
 \end{document}
