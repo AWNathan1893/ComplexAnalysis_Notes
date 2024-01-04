@@ -1,0 +1,63 @@
+\documentclass[twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{style}
+\usepackage{subfiles}
+
+% \makeindex[columns=2, title=Index, intoc, options= -s index_style.ist]
+% \GlsXtrLoadResources[src={symbols}, selection={all}]
+
+\title{\Huge\sffamily Complex Analysis}
+\author{\sffamily {\LARGE \href{https://www.isibang.ac.in/~jay/}{Jaydeb Sarkar}} \\[0.5cm]
+  \href{https://www.isibang.ac.in/~statmath}{Statistics and Mathematics Unit} \\
+  \href{https://www.isibang.ac.in}{Indian Statistical Institute, Bangalore}}
+\date{}
+
+
+\begin{document}
+
+\pagestyle{empty}
+% \includepdf[pages=-]{cover2.pdf}
+
+
+
+\frontmatter
+
+\pagestyle{plain}
+\maketitle
+
+\cleardoublepage
+\tableofcontents
+
+% \glsadd{pi}
+% \printunsrtglossary[title={List of Notation}, toctitle={Notation}]
+
+\clearpage
+
+
+
+\mainmatter
+
+% \pagestyle{fancy}
+% \fancyhf{}
+% \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ #1}{}}
+% \fancyhead[RO]{\nouppercase Lecture \thechapter \leftmark}
+% \renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ #1}}
+% \fancyhead[LE]{\nouppercase \rightmark}
+% \fancyfoot[C]{\thepage}
+% \renewcommand{\footrulewidth}{0.4pt}
+
+
+\subfile{lectures/lec-01}
+
+
+
+% \backmatter
+
+% \pagestyle{plain}
+% {\footnotesize
+%   \cleardoublepage
+%   \printindex\label{index}
+%   \clearpage
+% }
+
+\end{document}
