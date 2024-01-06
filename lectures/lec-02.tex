@@ -20,7 +20,7 @@
 
 We will denote \(C^0(\mO)\) as \(C(\mO)\) for convenience.
 
-\begin{Def}{Complex partial derivatives}{cpd}
+\begin{Def}{Complex partial derivatives}{cpd}\index{Complex partial derivative}
   Let \(f = u + iv : \mO\to \C\) be in \(C^1(\mO)\). Then we define the \textbf{complex partial derivatives} of \(f\) as,
   \begin{alignat*}{2}
     {\partial f}                   & = \pdv{f}{z}       & := \frac 12 \left( \pdv{x} - i \pdv{y} \right)(u + iv) \\
@@ -83,7 +83,7 @@ so it is immediate that, \(f \in \Hol(\mO)\) if and only if \(\bar{\partial f} =
   \end{enumerate}
 \end{proof}
 
-\section{Harmonic functions}
+\section{Harmonic functions}\index{Harmonic function}
 This is a very interesting class of functions and are very important in complex analysis. Let, \(f = u + iv \in \Hol(\mO) \cap C^2(\mO)\). Then the Cauchy-Riemann equations tell us that
 \[ u_x = v_y \text{ and } u_y = -v_x \]
 If we take the partial derivative of the first equation with respect to \(x\) and the second equation with respect to \(y\), we get
@@ -103,17 +103,17 @@ Our previous discussion leads us to a very important question. \textit{Is every 
 \section{Integration of complex functions}
 We already have the notion of line integrals over \(\R^2\). Naturally, the question arises, wheather integration in \(\C\) and \(\R^2\) are related. The answer is yes, but we need to be careful.
 
-\subsection*{Line integrals}
+\subsection*{Line integrals}\index{Line integral}
 
-\begin{Def}{Parametrized curve}{param:curve}
+\begin{Def}{Parametrized curve}{param:curve}\index{Parametrized curve}
   \begin{itemize}
     \item A \textbf{parametrized curve} is a continuous function \(\gamma \text{ or } z : [a, b] \to \C\). We write,
           \begin{align*}
             \gamma(t)       & = \gamma_1(t) + i \gamma_2(t) \\
             \text{or } z(t) & = x(t) + iy(t)
           \end{align*}
-    \item We say \(\gamma\) is \textbf{closed} if \(\gamma(a) = \gamma(b)\).
-    \item \(\gamma\) is said to be \textbf{simple closed} if \(\gamma\) is closed and one-one. In other words, there is no loop.
+    \item We say \(\gamma\) is \textbf{closed}\index{Closed curve} if \(\gamma(a) = \gamma(b)\).
+    \item \(\gamma\) is said to be \textbf{simple closed}\index{Simple Closed curve} if \(\gamma\) is closed and one-one. In other words, there is no loop.
   \end{itemize}
 \end{Def}
 
@@ -137,7 +137,7 @@ We already have the notion of line integrals over \(\R^2\). Naturally, the quest
   \]
 \end{Def}
 
-\begin{Def}{Contour integral}{contour:int}
+\begin{Def}{Contour integral}{contour:int}\index{Contour integral}
   Let \(\gamma : [a, b] \to \C\) be a \(C^1\) curve and \(f \in C\left( \left\{ \gamma(t) : t \in [a, b] \right\} \right)\) be a function. Then we define the \textbf{line integral} or \textbf{contour integral of \(f\) along \(\gamma\)} as,
   \[
     \int_\gamma f = \int_\gamma f(z) \, \dd{z} = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t}
@@ -174,9 +174,9 @@ where the second equality follows from the substitution \(r = s(t)\). Hence, the
   Splitting the integral \(\int_a^b e^{3it} \, \dd{t}\) into real and imaginary parts, we get,
   \begin{align*}
     \int_a^b e^{3it} \, \dd{t}
-     & = \int_a^b (\cos(3t) + i \int_a^b \sin(3t)) \, \dd{t}         \\
-     & = \int_a^b \cos(3t) \, \dd{t} + i \int_a^b \sin(3t) \, \dd{t} \\
-     & = \left[ \frac{e^{3it}}{3} \right]_a^b
+     & = \int_a^b \cos(3t) \, \dd{t} + i \int_a^b \sin(3t) \, \dd{t}      \\
+     & = \eval{\frac{\sin(3t)}{3}}_a^b + i \eval{-\frac{\cos(3t)}{3}}_a^b \\
+     & = \eval{\frac{e^{3it}}{3}}_a^b
   \end{align*}
   So, \begin{align*}
     \int_\gamma f
@@ -217,5 +217,7 @@ Consider a polynomial \(p(z) = a_0 + a_1 z + \cdots + a_n z^n\). It is an immedi
     \frac 1{2\pi i} \int_{\partial B_r(0)} \frac 1z \, \dd{z} = n
   \]
 \end{Eg}
+
+The integer \(n\) in the above example is called the \textbf{winding number}\index{Winding number} of the curve \(\gamma\) around \(0\), which is a topological invariant and is studied in detail in index theory.
 
 \end{document}

@@ -15,9 +15,9 @@ Our objective is to study functions $f : \C \to \C$. We know that as metric spac
 
 Before going into further details we recall some of the obvious observations that one can make,
 \begin{enumerate}
-  \item (Triangle inequality). $||z_1| - |z_2|| \leq |z_1 - z_2|$.
+  \item (Triangle inequality). \index{Triangle inequality} $||z_1| - |z_2|| \leq |z_1 - z_2|$.
   \item $|z| \geq \max \{ |x|, |y| \}$ where $z = x + iy$.
-  \item $\{z_n\}_{n \in \N} \subseteq \C$ is a Cauchy sequence if and only if $\{(x_n,y_n)\}_{n \in \N} \subseteq \R^2$ is a Cauchy sequence, which is equivalent to $\{x_n\}_{n\in\N}$ and $\{y_n\}_{n\in\N}$ are Cauchy sequences.
+  \item $\{z_n\}_{n \in \N} \subseteq \C$ is a Cauchy sequence\index{Cauchy sequence} if and only if $\{(x_n,y_n)\}_{n \in \N} \subseteq \R^2$ is a Cauchy sequence, which is equivalent to $\{x_n\}_{n\in\N}$ and $\{y_n\}_{n\in\N}$ are Cauchy sequences.
   \item Let $f : \C \to \C$ be a function. Then $f$ is continuous (or limit exists) at a point $z_0=x_0 + i y_0$ if and only if $f : \R^2 \to \R^2$ viewed as a function from the real plane to the real plane is continuous (or limit exists) at $(x_0,y_0)$.
 \end{enumerate}
 We haven't yet clarified how the analysis of $\C$ differs from the analysis of $\R^2$, the fact that $\C$ is a field gives us that $\frac{f(z) - f(z_0)}{z - z_0} \in \C$ for all $z \neq z_0$. Thus we can define the derivative of $f : \C \to C$ at $z_0$ as the complex number obtained by taking the limit $\lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}$ (provided the limit exists). Thus the derivative of $f : \C \to C$ at $z_0 \in \C$ is a complex number, while the derivative of $f : \R^2 \to \R^2$ (that is, the total derivative) is a $2 \times 2$ matrix.
@@ -30,17 +30,21 @@ This raises the following question let $f = u + i v$, then if we view $f = (u,v)
 \]
 is there any relation between $f'(z_0)$ (if it exists) and $J_f(x_0,y_0)$?
 
+\smallskip
+
 \textbf{Homewok.} (another representation of $\C$). Let
 \begin{equation}\label{eq1:lec1}
   M = \left\{ \begin{pmatrix} x & -y \\ y & x \end{pmatrix} \mid x,y \in \R  \right\} \subseteq M_2(\R)
 \end{equation}
 Show that $M$ is a field under matrix multiplication and is in fact isomorphic to $\C$.
 
+\smallskip
+
 The above assignment suggests there must be some representation of $f'(z_0)$ in terms of the Jacobian matrix $J_f(x_0,y_0)$, indeed there is some relation which we will discuss in a while.
 
 \textbf{Notation.} $B_r(z_0) = \{ z \in \C \mid |z - z_0| < r \}$.
 
-\begin{Def}{Holomorphic Functions.}{}
+\begin{Def}{Holomorphic Functions.}{}\index{Holomorphic Function}
   Let $\mO$ be an open subset of $\C$, and let $f : \mO \to \C$ be a function and $z_0 \in \mO$. We say that $f$ is $\C$-\textbf{differentiable at} $z_0$ or \textbf{holomorphic at} $z_0$ if
   \[
     \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0} =: f'(z_0) \mbox{ exists.}
@@ -68,9 +72,9 @@ The above assignment suggests there must be some representation of $f'(z_0)$ in 
     \end{bmatrix} \in M$.
 \end{Eg}
 
-The above example gives us the motivation to answer the problem we had raised earlier: \textit{how are the complex derivative and the Jacobian matrix related?}
+The above example gives us the motivation to answer the problem we had raised earlier: \textit{how are the complex derivative and the Jacobian\index{Jacobian} matrix related?}
 
-\section{Holomorphic versus Differentiable Functions.}
+\section{Holomorphic versus Differentiable Functions.}\index{Differentiable Function}
 
 For this discussion we will let $f = u + iv : \mO \to \C$, let $z_0 = x_0 + i y_0$. Suppose $f$ is holomorphic at $z_0$, and let $\alpha = a + i b = f'(z_0)$. We then define the function for all $z \in B_r(z_0)$
 \begin{align*}
@@ -95,7 +99,7 @@ Thus it is equivalent to saying that $u,v : \mO \to \R$ are differentiable at $(
    & b = v_x = - u_y.
 \end{align*}
 
-\begin{Thm}{Cauchy Riemann Equations}{}
+\begin{Thm}{Cauchy Riemann Equations}{cre}\index{Cauchy Riemann Equations}
   Let $f := u + iv : \mO \to \C$ be a function and $z_0 \in \mO$. Then $f$ is holomorphic at $z_0$ if and only if $u,v : \mO \to \R$ is differentiable at $z_0$ and $u_x = v_y$ and $u_y = - v_x$. These are called the Cauchy Riemann Equations, thus we have
   \begin{align*}
     u_x = v_y, \ u_y = -v_x \quad \mbox{ and } \quad f'(z_0) = u_x(z_0) + i v_x(z_0).

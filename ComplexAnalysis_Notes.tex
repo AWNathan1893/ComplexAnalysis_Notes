@@ -3,7 +3,7 @@
 \usepackage{style}
 \usepackage{subfiles}
 
-% \makeindex[columns=2, title=Index, intoc, options= -s index_style.ist]
+\makeindex[columns=2, title=Index, intoc, options= -s index_style.ist]
 % \GlsXtrLoadResources[src={symbols}, selection={all}]
 
 \title{\Huge\sffamily Complex Analysis}
@@ -37,27 +37,28 @@
 
 \mainmatter
 
-% \pagestyle{fancy}
-% \fancyhf{}
-% \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ #1}{}}
-% \fancyhead[RO]{\nouppercase Lecture \thechapter \leftmark}
-% \renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ #1}}
-% \fancyhead[LE]{\nouppercase \rightmark}
-% \fancyfoot[C]{\thepage}
-% \renewcommand{\footrulewidth}{0.4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ #1}{}}
+\fancyhead[RO]{\nouppercase Lecture \thechapter \leftmark}
+\renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ #1}}
+\fancyhead[LE]{\nouppercase \rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
 
 
 \subfile{lectures/lec-01}
+\subfile{lectures/lec-02}
 
 
 
-% \backmatter
+\backmatter
 
-% \pagestyle{plain}
-% {\footnotesize
-%   \cleardoublepage
-%   \printindex\label{index}
-%   \clearpage
-% }
+\pagestyle{plain}
+{\footnotesize
+  \cleardoublepage
+  \printindex\label{index}
+  \clearpage
+}
 
 \end{document}
