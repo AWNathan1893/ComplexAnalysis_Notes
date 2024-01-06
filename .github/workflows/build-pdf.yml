@@ -55,7 +55,6 @@ jobs:
         with:
           working_directory: ./lectures
           root_file: "*.tex"
-          glob_root_file: true
           latexmk_shell_escape: true
 
       - if: ${{ steps.cache-ra-3.outputs.cache-hit != 'true' }}
