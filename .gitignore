@@ -12,6 +12,9 @@
 *.cb2
 .*.lb
 
+## latexindent auxiliary files
+__latexindent_temp*
+
 ## Intermediate documents:
 *.dvi
 *.xdv
