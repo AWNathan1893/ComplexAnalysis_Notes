@@ -1,0 +1,221 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+
+\begin{document}
+\chapter*{Lecture 2} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 2} %Set chapter title
+\setcounter{chapter}{2} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+
+\section{Complex partial differential operator}
+
+\begin{Def}{Complex \(C^k\) functions}{}
+  Let \(\mO \subset \R^2\) be open. We say, \(f : \mO \to \C\) is in \(C^1(\mO)\) if \(\pdv{f}{x}\) and \(\pdv{f}{y}\) are continuous on \(\mO\). And we say \(f \in C^k(\mO)\) if all the partial derivatives of order \(\leq k\) are continuous on \(\mO\). In other words,
+  \[
+    C^k(\mO) = \left\{ f : \mO \to \C \mid \frac{\partial^t f}{\partial x^i \partial y^j} \text{ is continuous on } \mO \text{ for all } i+j = t \text{ and } 1 \leq t \leq k  \right\}.
+  \]
+\end{Def}
+
+We will denote \(C^0(\mO)\) as \(C(\mO)\) for convenience.
+
+\begin{Def}{Complex partial derivatives}{cpd}
+  Let \(f = u + iv : \mO\to \C\) be in \(C^1(\mO)\). Then we define the \textbf{complex partial derivatives} of \(f\) as,
+  \begin{alignat*}{2}
+    {\partial f}                   & = \pdv{f}{z}       & := \frac 12 \left( \pdv{x} - i \pdv{y} \right)(u + iv) \\
+    \text{and } {\bar{\partial} f} & = \pdv{f}{\bar{z}} & := \frac 12 \left( \pdv{x} + i \pdv{y} \right)(u + iv)
+  \end{alignat*}
+\end{Def}
+
+Note that \({\partial f}\) and \({\bar{\partial} f}\) exist when the partials \(\pdv{f}{x}\) and \(\pdv{f}{y}\) exist. We don't need the continuity of the partials to define the complex partial derivatives. But in pracice we will always consider that \(C^1\) functions. Consider the following example,
+
+\begin{Eg}{}{}
+  Let \(f(z) = z\). Then,
+  \begin{align*}
+    \partial f = \pdv{z}{z} & = \frac 12 \left( \pdv{x} - i \pdv{y} \right)(x + iy) \\
+                            & = \frac 12 (1 - i^2) = 1
+  \end{align*}
+  Also for \(g(z) = \bar{z}\),
+  \begin{align*}
+    \partial g = \pdv{\bar{z}}{z} & = \frac 12 \left( \pdv{x} - i \pdv{y} \right)(x - iy) \\
+                                  & = \frac 12 (1 + i^2) = 0
+  \end{align*}
+\end{Eg}
+
+\begin{Lem}{}{par:lin:ch}
+  Let \(f, g \in C^1(\mO)\) and \(\alpha, \beta \in \C\) be scalars. Then show that,
+  \begin{enumerate}
+    \item \(\partial(\alpha f + \beta g) =  \alpha \partial f + \beta \partial g\).
+    \item \(\bar{\partial}(\alpha f + \beta g) =  \alpha \bar{\partial} f + \beta \bar{\partial} g\).
+    \item \(\partial(fg) = f \partial g + g \partial f\).
+    \item \(\bar{\partial}(fg) = f \bar{\partial} g + g \bar{\partial} f\).
+  \end{enumerate}
+\end{Lem}
+\begin{proof}
+  Exercise.
+\end{proof}
+
+Lemma \ref{lem:par:lin:ch} shows that \(\partial\) and \(\bar{\partial}\) have the similar properties as the usual partial derivatives.
+
+\
+
+\textbf{Remark.} For \(f = u + iv \in C^1(\mO)\), we have,
+\begin{align*}
+  \bar{\partial f} = \pdv{f}{\bar{z}}
+   & = \frac 12 \left( \pdv{x} + i \pdv{y} \right)(u + iv)                   \\
+   & = \frac 12 \left( u_x - v_y \right) + \frac i2 \left( v_x + u_y \right)
+\end{align*}
+so it is immediate that, \(f \in \Hol(\mO)\) if and only if \(\bar{\partial f} = 0\) on \(\mO\). Again, for \(f \in \Hol(\mO)\), \(\partial f = f'\) on \(\mO\).
+
+\begin{Thm}{}{}
+  Let \(\mO \subseteq \C\) be a domain (open and connected subset of \(\C\)) and \(f = u + iv \in \Hol(\mO)\). Then,
+  \begin{enumerate}
+    \item If \(f' = 0\) then \(f\) is constant on \(\mO\).
+    \item If \(f(\mO) \subseteq \R\) then \(f\) is constant on \(\mO\).
+  \end{enumerate}
+\end{Thm}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Let \(f' = 0\) on \(\mO\). Then \(u_x = 0\) and \(v_x = 0\). So \(u\) and \(v\) are \(x-\)free. Also, by the Cauchy-Riemann equations, \(u_y = v_x = 0\) and \(v_y = -u_x = 0\). So \(u\) and \(v\) are \(y-\)free. So, by connectedness of \(\mO\), \(u\) and \(v\) are constant. Hence, \(f\) is constant on \(\mO\).
+    \item Let \(f(\mO) \subseteq \R\). Then \(v\) is constant. So \(v_x = v_y = 0\). And by the Cauchy-Riemann equations, \(u_x = v_y = 0\) and \(u_y = -v_x = 0\). So\(u\) is constant. Hence, \(f\) is constant on \(\mO\).
+  \end{enumerate}
+\end{proof}
+
+\section{Harmonic functions}
+This is a very interesting class of functions and are very important in complex analysis. Let, \(f = u + iv \in \Hol(\mO) \cap C^2(\mO)\). Then the Cauchy-Riemann equations tell us that
+\[ u_x = v_y \text{ and } u_y = -v_x \]
+If we take the partial derivative of the first equation with respect to \(x\) and the second equation with respect to \(y\), we get
+\[ u_{xx} = v_{yx} = v_{xy} \text{ and } u_{yy} = -v_{xy} = -v_{yx} \]
+Adding these two equations gives \(u_{xx} + u_{yy} = 0\). So \(u\) is harmonic. Similarly, \(v_{xx} + v_{yy} = 0\) and therefore \(v\) is also harmonic.
+
+\
+
+We will denote the \textbf{Laplacian operator} by \(\Delta = \pdv[2]{}{x} + \pdv[2]{}{y}\). So if \(f \in \Hol(\mO) \cup C^2(\mO)\) then \(\Delta u = 0 = \Delta v\) on \(\mO\).
+
+\begin{Def}{Harmonic function}{}
+  A function \(f \in C^2(\mO)\), where \(\mO \subseteq \R\), is called \textbf{harmonic} if \(\Delta f = 0\).
+\end{Def}
+
+Our previous discussion leads us to a very important question. \textit{Is every harmonic function the real part of a holomorphic function?} The answer is yes, but in some nice domains, and there are domains where this is not true. Answering this question, particularly for \(\Delta f = Ef\), takes us to the theory of partial differential equations. We will develop some machinery and then come back to this question.
+
+\section{Integration of complex functions}
+We already have the notion of line integrals over \(\R^2\). Naturally, the question arises, wheather integration in \(\C\) and \(\R^2\) are related. The answer is yes, but we need to be careful.
+
+\subsection*{Line integrals}
+
+\begin{Def}{Parametrized curve}{param:curve}
+  \begin{itemize}
+    \item A \textbf{parametrized curve} is a continuous function \(\gamma \text{ or } z : [a, b] \to \C\). We write,
+          \begin{align*}
+            \gamma(t)       & = \gamma_1(t) + i \gamma_2(t) \\
+            \text{or } z(t) & = x(t) + iy(t)
+          \end{align*}
+    \item We say \(\gamma\) is \textbf{closed} if \(\gamma(a) = \gamma(b)\).
+    \item \(\gamma\) is said to be \textbf{simple closed} if \(\gamma\) is closed and one-one. In other words, there is no loop.
+  \end{itemize}
+\end{Def}
+
+\begin{Def}{\(C^1\) function}{c1:fn}
+  A function \(\phi : [a, b] \to \C\) is in \(C^1[a, b]\) if
+  \begin{itemize}
+    \item \(\phi\) is continuous on \([a, b]\).
+    \item \(\phi'\) exists on \((a, b)\).
+    \item \(\phi'\) has a continuous extension to \([a, b]\), i.e., both \(\lim_{t \to a^+} \phi'(t)\) and \(\lim_{t \to b^-} \phi'(t)\) exist.
+  \end{itemize}
+\end{Def}
+
+\begin{Def}{}{}
+  A function \(\gamma : [a, b] \to \C\) is in \(C^1[a, b]\) if both \(\Re(\gamma)\) and \(\Im(\gamma)\) are in \(C^1[a, b]\).
+\end{Def}
+
+\begin{Def}{Integration of a curve}{int:curve}
+  Let \(\gamma : [a, b] \to \C\) be a curve. Then we define the \textbf{integral of \(\gamma\)} as,
+  \[
+    \int_a^b \gamma(t) \, \dd{t} = \int_a^b \gamma_1(t) \, \dd{t} + i \int_a^b \gamma_2(t) \, \dd{t}
+  \]
+\end{Def}
+
+\begin{Def}{Contour integral}{contour:int}
+  Let \(\gamma : [a, b] \to \C\) be a \(C^1\) curve and \(f \in C\left( \left\{ \gamma(t) : t \in [a, b] \right\} \right)\) be a function. Then we define the \textbf{line integral} or \textbf{contour integral of \(f\) along \(\gamma\)} as,
+  \[
+    \int_\gamma f = \int_\gamma f(z) \, \dd{z} = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t}
+  \]
+\end{Def}
+
+This follows precisely from the definition of the line integrals over \(\R^2\) as we constructed the Riemann integration. Here our main concern is that wheather the integral is well defined. Does \(\int_\gamma f\) depend on the parametrization of \(\gamma\)?
+
+\
+
+Consider two parametrizations of \(\gamma\), \(\gamma_1 : [a, b] \to \C\) and \(\gamma_2 : [c, d] \to \C\). We construct a map \(s : [c, d] \to [a, b]\) such that
+\begin{itemize}
+  \item \(s' > 0\).
+  \item \(s(c) = a\) and \(s(d) = b\).
+  \item \(\gamma_2(t) = \gamma_1(s(t))\) for all \(t \in [c, d]\).
+\end{itemize}
+Then,
+\begin{align*}
+  \int_{\gamma_1} f
+   & = \int_c^d f(\gamma_1(s(t))) \gamma_1'(s(t)) s'(t) \, \dd{t} \\
+   & = \int_a^b f(\gamma_1(r)) \gamma_1'(r) \, \dd{r}             \\
+   & = \int_{\gamma_2} f
+\end{align*}
+where the second equality follows from the substitution \(r = s(t)\). Hence, the integral is well defined. We will now consider some eye-opening examples.
+
+\begin{Eg}{}{}
+  We will now compute the integral of \(f(z) = z^2\) over the circle \(\partial B_r(0)\) of radius \(r > 0 \) centered at \(0\). We parametrize an arc of this circle as \(\gamma(t) = re^{it}\) for \(0 \leq a \leq t \leq b \leq 2\pi\). Then,
+  \begin{align*}
+    \int_\gamma f
+     & = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t} \\
+     & = \int_a^b (re^{it})^2 (ire^{it}) \, \dd{t}  \\
+     & = r^3 \int_a^b e^{3it} \, \dd{t}
+  \end{align*}
+  Splitting the integral \(\int_a^b e^{3it} \, \dd{t}\) into real and imaginary parts, we get,
+  \begin{align*}
+    \int_a^b e^{3it} \, \dd{t}
+     & = \int_a^b (\cos(3t) + i \int_a^b \sin(3t)) \, \dd{t}         \\
+     & = \int_a^b \cos(3t) \, \dd{t} + i \int_a^b \sin(3t) \, \dd{t} \\
+     & = \left[ \frac{e^{3it}}{3} \right]_a^b
+  \end{align*}
+  So, \begin{align*}
+    \int_\gamma f
+     & = \frac{r^3}{3} \left( e^{3ib} - e^{3ia} \right)                      \\
+     & \begin{cases}
+         = 0    & \text{if } b - a = \frac{2n\pi}{3} \text{ for any } n \in \Z \\
+         \neq 0 & \text{ otherwise }
+       \end{cases}
+  \end{align*}
+\end{Eg}
+
+Consider a polynomial \(p(z) = a_0 + a_1 z + \cdots + a_n z^n\). It is an immediate observation that the integral \(\int_{\partial B_r(0)} p(z) \,dz\) is always zero for any \(r > 0\), which somehow indicates that to \(\int_{\partial B_r(0)}\) for power series and ``good functions'' are also zero. Consider the following examples,
+
+\begin{Eg}{}{}
+  Let \(\gamma\) be the line joining \(1\) and \(1+2i\), which can be parametrized as \(\gamma(t) = 1 + 2it\) for \(0 \leq t \leq 1\). Then, we compute the integral of \(f(z) = z^2\) over \(\gamma\) as,
+  \begin{align*}
+    \int_\gamma f
+     & = \int_0^1 (1 + 2it)^2 (2i) \, \dd{t} \\
+     & = \frac{2}{3} + 4i \neq 0
+  \end{align*}
+\end{Eg}
+
+\begin{Eg}{}{}
+  Let \(r > 0\) and \(f : \C \setminus \{0\} \to \C\) be the fucntion \(f(z) = \frac 1z\). Note that, \(f\) is continuous on \(\partial B_r(0)\) but \(f \not\in \Hol(B_r(0)) \). We compute the integral of \(f\) over the circle \(\partial B_r(0)\) with our previous parameterization as,
+  \begin{align*}
+    \int_{\partial B_r(0)} \frac 1z \, \dd{z}
+     & = \int_0^{2\pi} \frac{1}{re^{it}} (ire^{it}) \, \dd{t} \\
+     & = \int_0^{2\pi} i \, \dd{t}                            \\
+     & = 2\pi i \neq 0
+  \end{align*}
+  Writing differently,
+  \[
+    \frac 1{2\pi i} \int_{\partial B_r(0)} \frac 1z \, \dd{z} = 1
+  \]
+
+  If we now increase the speed of parameterization of \(\partial B_r(0)\) to \(n\), i.e. \(\gamma(t) = re^{int}\) for \(0 \leq t \leq 2\pi\). Then we get
+  \[
+    \frac 1{2\pi i} \int_{\partial B_r(0)} \frac 1z \, \dd{z} = n
+  \]
+\end{Eg}
+
+\end{document}
