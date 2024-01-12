@@ -1,0 +1,167 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+
+\begin{document}
+\chapter*{Lecture 3} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 3} %Set chapter title
+\setcounter{chapter}{3} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+\section{More on contour integration}
+
+We briefly discuss the more fundamental development of integrals of complex functions over curves in the complex plane. Let \( \gamma: [a,b] \to \mathcal{O} \) be a smooth curve in \( \mathbbm{C} \). Although rectifiability of the curve is a sufficient assumption for the development of the theory, we assume smoothness for the sake of brevity.
+
+Let \( P: a = t_0 < t_1 \cdots < t_n = b \) be a partition of \( [a,b] \). Consider the points \( z_j = \gamma(t_j), 0 \leq j \leq n \) and let \( \gamma_j = \gamma([t_{j-1}, t_j]) \) for \( 1 \leq j \leq n \). We pick tags \( \zeta_j \in \gamma_j \) to get the tag set \( T_P = \{\zeta_j\}_1^n \). Then, we define the mesh of the partition of \( P \) with respect to the curve \( \gamma \) to be 
+\[ 
+ \norm{P}_\gamma = \max\{\abs{z_j - z_{j-1}}: 1 \leq j \leq n\} 
+ \]
+
+The Riemann sum of the function \( f \) with respect to the partition \( P \) and the curve \( \gamma \) is defined to be
+\[ 
+R(f,\gamma; P, T_P) = \sum_{j=1}^{n}f(\zeta_j) (z_j - z_{j-1})
+\]
+
+We say that the function \( f \) is integrable over \( \gamma \) if the limit of \( R \) exists as \( \norm{P}_\gamma \to 0 \). In that case, we define
+\[ 
+  \int_\gamma f \dd{z} = \lim_{\norm{P}_\gamma \to 0} R(f,\gamma; P, T_P)
+  \]
+
+Finally, we have the following result which justifies the preliminary discussion of the last lecture.
+
+\begin{Thm}{}{}
+If \( f \in C(\mathcal{O}) \), \( f \) is integrable over any smooth curve \( \gamma \) contained in \( \mathcal{O} \) and 
+\[ 
+  \int_\gamma f \dd{z} = \int_a^b f(\gamma(t))\gamma'(t) \dd{t}
+  \]
+\end{Thm}
+
+We now discuss how contour integration of functions in \( \mathbbm{C} \) relate to integration of scalar fields in \( \mathbbm{R}^2 \). Let \( \gamma(t) = \gamma_1(t) + i \gamma_2(t) \) be a smooth curve in \( \mathbbm{C} \) and \( f = u+iv \). Then,
+
+\begin{align*}
+   f(\gamma(t)) \gamma'(t) 
+   &= \qty(u(\gamma(t))+i v(\gamma(t)))\qty(\gamma_1'(t)+i\gamma_2'(t)) \\
+   &= \qty((u \circ \gamma)(t) \gamma_1'(t) - (v \circ \gamma)(t)\gamma_2'(t)) + i \qty((v \circ \gamma)(t) \gamma_1'(t) + (u \circ \gamma)(t)\gamma_2'(t)) \\
+   \implies \int_\gamma f \dd{z}
+   &= \int_a^b\qty((u \circ \gamma)(t) \gamma_1'(t) - (v \circ \gamma)(t)\gamma_2'(t)) \dd{t} + i \int_a^b \qty((v \circ \gamma)(t) \gamma_1'(t) + (u \circ \gamma)(t)\gamma_2'(t)) \dd{t} \\
+   \implies \int_\gamma f \dd{z}
+   &= \qty(\int_\gamma u \dd{x} - v \dd{y}) + i \qty(\int_\gamma v \dd{x} + u \dd{y})
+\end{align*}
+We can slightly abuse the notation to write the identity above suggestively as:
+\[ 
+ \int_\gamma f \dd{z} = \int_\gamma f \dd{x} + i \int_\gamma f \dd{y} = \int_\gamma (f \dd{x} + if \dd{y})
+ \]
+
+\textbf{Exercise}: Show that for any smooth curve \( \gamma \), the operation of integrating functions over \( \gamma \) is linear, i.e, \( \int_\gamma \) is a linear functional on the space of all functions that are integrable over \( \gamma \).
+
+\begin{Def}{}{}
+ For \( \gamma:[a,b] \to \mathbbm{C} \) a smooth curve, we define the length of \( \gamma \) to be
+ \[ 
+  \ell(\gamma) = \int_a^b \abs{\gamma'(t)} \dd{t}
+  \]
+\end{Def}
+
+\begin{Def}{}{}
+ A curve \( \gamma: [a,b] \to \mathbbm{C} \) is said to be piecewise smooth if there is a partition \( P: a = t_0 < t_1 \cdots t_n = b \) of \( [a,b] \) such that \(  \gamma \big\vert_{[t_{j-1}, t_{j}]} \) is smooth, for all \( 1 \leq j \leq n \).
+\end{Def}
+
+The preceding constructions are easily generalised to piecewise smooth curves, simply by breaking up the curve into its smooth parts and integrating separately over each such part and adding the results. We leave it as an easy exercise for the reader to formulate the exact expressions.
+\smallskip
+
+\textbf{Exercise}: If \( -\gamma \) denotes the curve \( t \mapsto \gamma(a+b-t) \) for \( \gamma: [a,b] \to \mathbbm{C} \) a (piecewise) smooth curve, then
+\[ 
+ \int_{-\gamma}f \dd{z} = - \int_\gamma f \dd{z}
+ \]
+
+\begin{Thm}{}{}
+Let \( \gamma: [a,b] \to \mathbbm{C} \) be a piecewise smooth curve.
+\begin{enumerate}[label = (\arabic*)]
+  \item \( \abs{\int_a^b \gamma(t) \dd{t}} \leq \int_a^b \abs{\gamma(t)} \dd{t} \)
+  \item for all \( f \) that is continuous on the range of \( \gamma \),
+  \[ 
+   \abs{\int_\gamma f \dd{z}} \leq \sup_{t \in [a,b]} \abs{f(\gamma(t))} \ell(\gamma)
+   \]
+\end{enumerate}
+\end{Thm}
+
+\begin{proof} 
+\begin{enumerate}[label = (\arabic*)]
+  \item Let \( \alpha = \int_a^b \gamma(t) \dd{t} \), and assume without loss of generality that \( \alpha \neq 0 \). Consider \( \beta = \frac{\alpha}{\abs{\alpha}} \),
+  \begin{align*}
+     \abs{\alpha} 
+     &= \beta \int_a^b \gamma(t) \dd{t} = \Re{\int_a^b \beta \gamma(t) \dd{t}} \leq \int_a^b \abs{\Re{\beta \gamma(t)}} \dd{t} \\
+     \implies \abs{\int_a^b \gamma(t) \dd{t}} &\leq \int_a^b \abs{\beta \gamma(t)} \dd{t} = \int_a^b \abs{\gamma(t)} \dd{t}
+  \end{align*}
+  Note that we only require \( \gamma \) to be a (continuous) curve for this part.
+
+  \item We have,
+  \begin{align*}
+     \abs{\int_\gamma f \dd{z}} 
+     &= \abs{\int_a^b f(\gamma(t))\gamma'(t) \dd{t}} \leq \int_a^b \abs{f(\gamma(t))} \abs{\gamma'(t)} \dd{t} \tag{by the first part} \\
+     \implies \abs{\int_\gamma f \dd{z}} & \leq \sup_{t \in [a,b]} \abs{f(\gamma(t))} \ell(\gamma)
+  \end{align*}
+  as was to be shown.
+\end{enumerate} 
+\end{proof}
+
+The following result is another chain rule, applicable for functions evaluated over curves.
+
+\begin{Thm}{}{}
+ Let \( f \in \textsf{Hol}(\mathcal{O}), \gamma: [a,b] \to \mathcal{O} \) a \( C^1 \) curve. Then,
+\[ 
+ (f \circ \gamma)'(t) = f'(\gamma(t))\gamma'(t)
+ \]
+ for all \( t \in (a,b) \).
+ \end{Thm}
+
+\begin{proof} 
+ Let \( f = u+iv \) and \( \gamma(t) = x(t)+iy(t) \). Then,
+ \begin{align*}
+   (f \circ \gamma)'(t) 
+   &= \dv{t} \qty(u(x(t),y(t))+iv(x(t), y(t))) \\
+   &= \qty(u_x \dv{x}{t} + u_y \dv{y}{t}) + i \qty(v_x \dv{x}{t} + v_y \dv{y}{t}) \\
+   &= \qty(u_x \dv{x}{t} - v_x \dv{y}{t}) + i \qty(v_x \dv{x}{t} + u_x \dv{y}{t}) \tag{Cauchy-Riemann equations} \\
+   &= (u_x+iv_x)\qty(\dv{x}{t}+i\dv{y}{t}) \\
+   \implies (f \circ \gamma)'(t)
+   &= f'(\gamma(t))\gamma'(t)
+ \end{align*}
+ \end{proof}
+
+% We now turn towards the concept of antiderivative, and it will turn out in subsequent lectures how this turns out to be useful in the theory.
+
+\begin{Def}{}{}
+ We say that \( f \in \textsf{Hol}(\mathcal{O}) \) has a primitive if there is \( g \in \textsf{Hol}(\mathcal{O}) \) such that \( g' = f \).
+ \end{Def}
+
+\begin{Thm}{}{}
+ Let \( f \in \textsf{Hol}(\mathcal{O}) \) and \( \gamma: [a,b] \to \mathcal{O} \) be a smooth curve. Assume \( f' \) is continuous in \( \mathcal{O} \). Then,
+ \[ 
+  \int_\gamma f' \dd{z} = f(\gamma(b)) - f(\gamma(a))
+  \]
+ \end{Thm}
+
+\begin{proof} 
+We have,
+\[ 
+  \int_\gamma f' \dd{z} = \int_a^b f'(\gamma(t))\gamma'(t) \dd{t} = \int_a^b (f \circ \gamma)'(t) \dd{t} 
+ \]
+We now split the derivative \( (f \circ \gamma)' \) into its real and imaginary parts, and use the fundamental theorem of calculus to conclude what was required.
+\end{proof}
+
+\begin{Cor}{}{}
+ Let \( \gamma:[a,b] \to \mathbbm{C} \) be a closed smooth curve and \( f \in \textsf{Hol}(\mathcal{O}) \), where \( \gamma([a,b]) \subseteq \mathcal{O} \). Then,
+ \[ 
+  \int_\gamma f' \dd{z} = 0
+  \]
+ \end{Cor}
+
+ This corollary can be used to show that certain functions cannot admit any primitives in a given domain, as in the following example.
+\begin{Eg}{}{}
+ Recall that
+ \[ 
+  \frac{1}{2\pi i} \int_{\partial B_r(0)} \frac{1}{z} \dd{z} = 1
+  \]
+  for all \( r > 0 \). Hence, even though \( z \mapsto \frac{1}{z} \) is holomorphic on \( \mathbbm{C} \setminus \qty{0} \), it does not admit any primitive in this domain!
+ \end{Eg}
+
+\end{document}
