@@ -15,7 +15,7 @@ header-includes: |
   </style>
 ---
 
-## [$\LaTeX$ed by](https://github.com/AWNathan1893/ComplexAnalysis_Notes/graphs/contributors)
+## [Scribed by](https://github.com/AWNathan1893/ComplexAnalysis_Notes/graphs/contributors)
 
 - [Aaratrick Basu](https://github.com/AWNathan1893)
 - [Bikram Halder](https://github.com/BikramHalder)
@@ -33,6 +33,7 @@ Get full [Complex Analysis notes](./pdfs/ComplexAnalysis_Notes.pdf) by [Jaydeb S
 
 - [Lecture 1](./pdfs/lec-01.pdf)
 - [Lecture 2](./pdfs/lec-02.pdf)
+- [Lecture 3](./pdfs/lec-03.pdf)
 
 [Download all the PDFs as zip](./ComplexAnalysis_Notes_all_pdfs.zip)
 
