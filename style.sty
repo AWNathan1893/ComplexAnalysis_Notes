@@ -65,6 +65,8 @@
 \definecolor{azure(web)(azuremist)}{rgb}{0.94, 1.0, 1.0}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{anti-flashwhite}{rgb}{0.95, 0.95, 0.96}
+\definecolor{darkcerulean}{rgb}{0.03, 0.27, 0.49}
+\definecolor{grrr}{HTML}{fcfcfa}
 
 \setcounter{tocdepth}{1}
 \allowdisplaybreaks
@@ -112,17 +114,21 @@
   description delimiters none,
   description font=\mdseries}{quote}
 
-\newtcbtheorem[number within=section]{Thm}{Theorem}{
-  breakable, enhanced,
-  attach boxed title to top left={xshift=3mm, yshift=-3mm, yshifttext=-1mm},
-  fonttitle=\sffamily,
-  coltitle=blue!70,
+  \newtcbtheorem[number within=section]{Thm}{\textcolor{darkcerulean}{\textbf{Theorem}}}{
+  detach title,
+  fonttitle=\bfseries,
+  coltitle=black,
   colbacktitle=white,
-  %colbacktitle=cosmiclatte,
-  colback=cyan!6,
-  colframe=blue!20,
-  separator sign none, description delimiters parenthesis,
-  description font=\mdseries}{th}
+  colback=grrr,
+  colframe=black,
+  sharp corners,
+  bottomrule= -0.1cm,
+  rightrule=-0.1cm,
+  toprule=-0.1cm,
+  leftrule=0.065cm,
+  separator sign none,description delimiters parenthesis,
+  description font=\scshape,
+  before upper={\tcbtitle}}{th}
 
 \newtcbtheorem[no counter]{ThmN}{Theorem}{
   breakable, enhanced,

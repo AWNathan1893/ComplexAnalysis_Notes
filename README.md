@@ -7,3 +7,10 @@ Scribed notes of the [Complex Analysis](https://www.isibang.ac.in/~adean/infsys/
 ```bash
 git clone https://github.com/AWNathan1893/ComplexAnalysis_Notes
 ```
+
+### Lecture Scribed
+
+- [x] Lecture 1
+- [x] Lecture 2
+- [x] Lecture 3
+- [ ] Lecture 4
