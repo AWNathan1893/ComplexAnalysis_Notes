@@ -9,16 +9,16 @@
 \setcounter{figure}{0}
 
 
-\section{Complex partial differential operator}
+\section{Complex partial differential operators}
 
 \begin{Def}{Complex \(C^k\) functions}{}
-  Let \(\mO \subset \R^2\) be open. We say, \(f : \mO \to \C\) is in \(C^1(\mO)\) if \(\pdv{f}{x}\) and \(\pdv{f}{y}\) are continuous on \(\mO\). And we say \(f \in C^k(\mO)\) if all the partial derivatives of order \(\leq k\) are continuous on \(\mO\). In other words,
+  Let \(\mO \subset \R^2\) be open. We say \(f : \mO \to \C\) is in \(C^1(\mO)\) if the partial derivatives \(\pdv{f}{x}\) and \(\pdv{f}{y}\) are continuous on \(\mO\). Similarly, we say \(f \in C^k(\mO)\) if all the partial derivatives of order \(\leq k\) are continuous on \(\mO\), that is,
   \[
-    C^k(\mO) = \left\{ f : \mO \to \C \mid \frac{\partial^t f}{\partial x^i \partial y^j} \text{ is continuous on } \mO \text{ for all } i+j = t \text{ and } 1 \leq t \leq k  \right\}.
+    C^k(\mO) = \left\{ f : \mO \to \C \bigg\rvert \; \frac{\partial^t f}{\partial x^i \partial y^j} \text{ is continuous on } \mO \text{ for all } i+j = t \text{ and } 1 \leq t \leq k  \right\}.
   \]
 \end{Def}
 
-We will denote \(C^0(\mO)\) as \(C(\mO)\) for convenience.
+We denote continuous functions as \(C^0(\mO)\) or \(C(\mO)\). Note that the notion of continuity is independent of whether $f$ is treated as a function \(f:\R^2 \to \R^2\) or \(f:\C \to \C\).
 
 \begin{Def}{Complex partial derivatives}{cpd}\index{Complex partial derivative}
   Let \(f = u + iv : \mO\to \C\) be in \(C^1(\mO)\). Then we define the \textbf{complex partial derivatives} of \(f\) as,
@@ -28,7 +28,7 @@ We will denote \(C^0(\mO)\) as \(C(\mO)\) for convenience.
   \end{alignat*}
 \end{Def}
 
-Note that \({\partial f}\) and \({\bar{\partial} f}\) exist when the partials \(\pdv{f}{x}\) and \(\pdv{f}{y}\) exist. We don't need the continuity of the partials to define the complex partial derivatives. But in pracice we will always consider that \(C^1\) functions. Consider the following example,
+Note that \({\partial f}\) and \({\bar{\partial} f}\) exist when the partials \(\pdv{f}{x}\) and \(\pdv{f}{y}\) exist. We don't need the continuity of the partials to define the complex partial derivatives. In practice however, we will almost always end up working with \(C^1\) functions. Consider the following example,
 
 \begin{Eg}{}{}
   Let \(f(z) = z\). Then,
@@ -42,7 +42,7 @@ Note that \({\partial f}\) and \({\bar{\partial} f}\) exist when the partials \(
                                   & = \frac 12 (1 + i^2) = 0
   \end{align*}
 \end{Eg}
-
+We collect some properties of these differential operators in the following lemma. The proofs follows from definition. 
 \begin{Lem}{}{par:lin:ch}
   Let \(f, g \in C^1(\mO)\) and \(\alpha, \beta \in \C\) be scalars. Then show that,
   \begin{enumerate}
@@ -52,11 +52,6 @@ Note that \({\partial f}\) and \({\bar{\partial} f}\) exist when the partials \(
     \item \(\bar{\partial}(fg) = f \bar{\partial} g + g \bar{\partial} f\).
   \end{enumerate}
 \end{Lem}
-\begin{proof}
-  Exercise.
-\end{proof}
-
-Lemma \ref{lem:par:lin:ch} shows that \(\partial\) and \(\bar{\partial}\) have the similar properties as the usual partial derivatives.
 
 \
 
@@ -66,10 +61,10 @@ Lemma \ref{lem:par:lin:ch} shows that \(\partial\) and \(\bar{\partial}\) have t
    & = \frac 12 \left( \pdv{x} + i \pdv{y} \right)(u + iv)                   \\
    & = \frac 12 \left( u_x - v_y \right) + \frac i2 \left( v_x + u_y \right)
 \end{align*}
-so it is immediate that, \(f \in \Hol(\mO)\) if and only if \(\bar{\partial f} = 0\) on \(\mO\). Again, for \(f \in \Hol(\mO)\), \(\partial f = f'\) on \(\mO\).
+so it is immediate that, \(f \in \Hol(\mO)\) if and only if \(\bar{\partial f} = 0\) on \(\mO\). Again, for \(f \in \Hol(\mO)\), \(\partial f = f'\) on \(\mO\). We will see that these differential operators will have roles analogous to the operators $\partial_x$ and $\partial_y$ over $\R^2$.
 
 \begin{Thm}{}{}
-  Let \(\mO \subseteq \C\) be a domain (open and connected subset of \(\C\)) and \(f = u + iv \in \Hol(\mO)\). Then,
+  Let \(\mO \subseteq \C\) be a open and connected, and \(f = u + iv \in \Hol(\mO)\).
   \begin{enumerate}
     \item If \(f' = 0\) then \(f\) is constant on \(\mO\).
     \item If \(f(\mO) \subseteq \R\) then \(f\) is constant on \(\mO\).
@@ -83,52 +78,44 @@ so it is immediate that, \(f \in \Hol(\mO)\) if and only if \(\bar{\partial f} =
   \end{enumerate}
 \end{proof}
 
+This indicates that the notion of holomorphicity is quite fundamentally different from that of the $\R^2$-derivative, and any non-trivial examples requires the functions to be complex valued.
+
 \section{Harmonic functions}\index{Harmonic function}
-This is a very interesting class of functions and are very important in complex analysis. Let, \(f = u + iv \in \Hol(\mO) \cap C^2(\mO)\). Then the Cauchy-Riemann equations tell us that
+This is a very interesting class of functions, frequently encountered in the theory of PDEs and in complex analysis. These are precisely the solution to the PDE $\Delta f = 0$, where $\Delta$ is the appropriate \textbf{Laplacian operator}. For functions over $\R^2$, this equation becomes
+\[\Delta f = f_{xx} + f_{yy} = 0\]
+Let, \(f = u + iv \in \Hol(\mO) \cap C^2(\mO)\). Then the Cauchy-Riemann equations are
 \[ u_x = v_y \text{ and } u_y = -v_x \]
-If we take the partial derivative of the first equation with respect to \(x\) and the second equation with respect to \(y\), we get
+Now, we take the partial derivative of the first equation with respect to $x$, and that of the second one with respect to \(y\). As the functions $u, v \in C^2(\mO)$, the mixed partial derivatives are independent of the order of integration. Thus,
 \[ u_{xx} = v_{yx} = v_{xy} \text{ and } u_{yy} = -v_{xy} = -v_{yx} \]
-Adding these two equations gives \(u_{xx} + u_{yy} = 0\). So \(u\) is harmonic. Similarly, \(v_{xx} + v_{yy} = 0\) and therefore \(v\) is also harmonic.
+Adding these two equations gives \(u_{xx} + u_{yy} = 0\), that is, \(u\) is harmonic. Similarly, \(v_{xx} + v_{yy} = 0\) and therefore \(v\) is also harmonic. Henceforth, the Laplacian Operator will be defined as
 
-\
-
-We will denote the \textbf{Laplacian operator} by \(\Delta = \pdv[2]{}{x} + \pdv[2]{}{y}\). So if \(f \in \Hol(\mO) \cup C^2(\mO)\) then \(\Delta u = 0 = \Delta v\) on \(\mO\).
+\[\Delta \equiv \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}\]
 
 \begin{Def}{Harmonic function}{}
   A function \(f \in C^2(\mO)\), where \(\mO \subseteq \R\), is called \textbf{harmonic} if \(\Delta f = 0\).
 \end{Def}
 
-Our previous discussion leads us to a very important question. \textit{Is every harmonic function the real part of a holomorphic function?} The answer is yes, but in some nice domains, and there are domains where this is not true. Answering this question, particularly for \(\Delta f = Ef\), takes us to the theory of partial differential equations. We will develop some machinery and then come back to this question.
+Thus the real and imaginary parts of any holomorphic function are harmonic. This raises the obvious question as to whether the converse is true. \textit{Is every harmonic function the real part of some holomorphic function?} The answer depends on the domain of definition of the functions. In sufficiently nice domains, this is indeed the case. However, there are subsets of the complex plane where this cannot be done. Answering this question, particularly for slightly more general situation \(\Delta f = Ef\), takes us to the theory of partial differential equations. We will develop some machinery and then hopefully come back to this question.
 
 \section{Integration of complex functions}
-We already have the notion of line integrals over \(\R^2\). Naturally, the question arises, wheather integration in \(\C\) and \(\R^2\) are related. The answer is yes, but we need to be careful.
+We already have a notion of line integrals over \(\R^2\). Naturally, the question arises, whether integration in \(\C\) can be defined in an analogous manner. That is the journey we embark upon now.
 
 \subsection*{Line integrals}\index{Line integral}
 
 \begin{Def}{Parametrized curve}{param:curve}\index{Parametrized curve}
-  \begin{itemize}
-    \item A \textbf{parametrized curve} is a continuous function \(\gamma \text{ or } z : [a, b] \to \C\). We write,
-          \begin{align*}
-            \gamma(t)       & = \gamma_1(t) + i \gamma_2(t) \\
-            \text{or } z(t) & = x(t) + iy(t)
-          \end{align*}
+  
+    A \textbf{parametrized curve} is a continuous function, often denoted by \(\gamma, z : [a, b] \to \C\). We will separate the real and imaginary parts as \(\gamma(t) = \gamma_1(t) + i \gamma_2(t)\) or as \(\text{or } z(t) = x(t) + iy(t) \).
+    \begin{itemize}
     \item We say \(\gamma\) is \textbf{closed}\index{Closed curve} if \(\gamma(a) = \gamma(b)\).
-    \item \(\gamma\) is said to be \textbf{simple closed}\index{Simple Closed curve} if \(\gamma\) is closed and one-one. In other words, there is no loop.
-  \end{itemize}
-\end{Def}
-
-\begin{Def}{\(C^1\) function}{c1:fn}
-  A function \(\phi : [a, b] \to \C\) is in \(C^1[a, b]\) if
-  \begin{itemize}
-    \item \(\phi\) is continuous on \([a, b]\).
-    \item \(\phi'\) exists on \((a, b)\).
-    \item \(\phi'\) has a continuous extension to \([a, b]\), i.e., both \(\lim_{t \to a^+} \phi'(t)\) and \(\lim_{t \to b^-} \phi'(t)\) exist.
+    \item \(\gamma\) is said to be \textbf{simple closed}\index{Simple Closed curve} if \(\gamma\) is closed and one-one on $[a,b)$.
   \end{itemize}
 \end{Def}
 
 \begin{Def}{}{}
-  A function \(\gamma : [a, b] \to \C\) is in \(C^1[a, b]\) if both \(\Re(\gamma)\) and \(\Im(\gamma)\) are in \(C^1[a, b]\).
+  A function \(\gamma : [a, b] \to \C\) is said to be in \(C^1[a, b]\) if both \(\Re(\gamma)\) and \(\Im(\gamma)\) are in \(C^1[a, b]\).
 \end{Def}
+
+We can talk about integration of a continuous over any curve, in a manner analogous to the definition of Riemann Integration. However, in most examples, integration will be carried out on $C^1$ curves, in which case, \eqref{contint} holds. So strictly speaking, Definition~-~\ref{def:contour:int} is a consequence rather than a definition. More details regarding the same can be found in the next lecture.
 
 \begin{Def}{Integration of a curve}{int:curve}
   Let \(\gamma : [a, b] \to \C\) be a curve. Then we define the \textbf{integral of \(\gamma\)} as,
@@ -137,34 +124,30 @@ We already have the notion of line integrals over \(\R^2\). Naturally, the quest
   \]
 \end{Def}
 
-\begin{Def}{Contour integral}{contour:int}\index{Contour integral}
-  Let \(\gamma : [a, b] \to \C\) be a \(C^1\) curve and \(f \in C\left( \left\{ \gamma(t) : t \in [a, b] \right\} \right)\) be a function. Then we define the \textbf{line integral} or \textbf{contour integral of \(f\) along \(\gamma\)} as,
-  \[
-    \int_\gamma f = \int_\gamma f(z) \, \dd{z} = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t}
-  \]
-\end{Def}
-
-This follows precisely from the definition of the line integrals over \(\R^2\) as we constructed the Riemann integration. Here our main concern is that wheather the integral is well defined. Does \(\int_\gamma f\) depend on the parametrization of \(\gamma\)?
-
 \
 
-Consider two parametrizations of \(\gamma\), \(\gamma_1 : [a, b] \to \C\) and \(\gamma_2 : [c, d] \to \C\). We construct a map \(s : [c, d] \to [a, b]\) such that
-\begin{itemize}
-  \item \(s' > 0\).
-  \item \(s(c) = a\) and \(s(d) = b\).
-  \item \(\gamma_2(t) = \gamma_1(s(t))\) for all \(t \in [c, d]\).
-\end{itemize}
-Then,
-\begin{align*}
-  \int_{\gamma_1} f
-   & = \int_c^d f(\gamma_1(s(t))) \gamma_1'(s(t)) s'(t) \, \dd{t} \\
-   & = \int_a^b f(\gamma_1(r)) \gamma_1'(r) \, \dd{r}             \\
-   & = \int_{\gamma_2} f
-\end{align*}
-where the second equality follows from the substitution \(r = s(t)\). Hence, the integral is well defined. We will now consider some eye-opening examples.
+\begin{Def}{Contour integral}{contour:int}\index{Contour integral}
+  Let \(\gamma : [a, b] \to \C\) be a \(C^1\) curve and \(f \in C\left( \left\{ \gamma(t) : t \in [a, b] \right\} \right)\) be a function. Then we define the \textbf{line integral} or \textbf{contour integral of \(f\) along \(\gamma\)} as,
+  \begin{equation}\label{contint}
+    \int_\gamma f = \int_\gamma f(z) \, \dd{z} = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t}
+  \end{equation}
+\end{Def}
+
+ The integral in the right hand side is an ordinary line integral over $\R^2$. However, for this to be a valid definition, it must be defined irrespective of the parametrization $\gamma$. This issue is addressed in the next lecture. For now, we look at some instructive examples.
+
+% Consider two parametrizations of \(\gamma\), \(\gamma_1 : [a, b] \to \C\) and \(\gamma_2 : [c, d] \to \C\). We construct a map \(s : [c, d] \to [a, b]\) such that \(s' > 0\), \(s(c) = a\), \(s(d) = b\) and \(\gamma_2(t) = \gamma_1(s(t))\) for all \(t \in [c, d]\).
+
+% Then,
+% \begin{align*}
+%   \int_{\gamma_1} f
+%    & = \int_c^d f(\gamma_1(s(t))) \gamma_1'(s(t)) s'(t) \, \dd{t} \\
+%    & = \int_a^b f(\gamma_1(r)) \gamma_1'(r) \, \dd{r}             \\
+%    & = \int_{\gamma_2} f
+% \end{align*}
+% where the second equality follows from the substitution \(r = s(t)\). Hence, the integral is well defined. We will now consider some interesting examples.
 
 \begin{Eg}{}{}
-  We will now compute the integral of \(f(z) = z^2\) over the circle \(\partial B_r(0)\) of radius \(r > 0 \) centered at \(0\). We parametrize an arc of this circle as \(\gamma(t) = re^{it}\) for \(0 \leq a \leq t \leq b \leq 2\pi\). Then,
+  We now compute the integral of \(f(z) = z^2\) over an arc the circle \(\partial B_r(0)\) of radius \(r > 0 \) centered at \(0\). An arc of this circle can be parametrized as \(\gamma(t) = re^{it}\) for \(0 \leq a \leq t \leq b \leq 2\pi\). Then,
   \begin{align*}
     \int_\gamma f
      & = \int_a^b f(\gamma(t)) \gamma'(t) \, \dd{t} \\
@@ -178,8 +161,8 @@ where the second equality follows from the substitution \(r = s(t)\). Hence, the
      & = \eval{\frac{\sin(3t)}{3}}_a^b + i \eval{-\frac{\cos(3t)}{3}}_a^b \\
      & = \eval{\frac{e^{3it}}{3}}_a^b
   \end{align*}
-  So, \begin{align*}
-    \int_\gamma f
+  \begin{align*}
+    \implies\int_\gamma f
      & = \frac{r^3}{3} \left( e^{3ib} - e^{3ia} \right)                      \\
      & \begin{cases}
          = 0    & \text{if } b - a = \frac{2n\pi}{3} \text{ for any } n \in \Z \\
@@ -188,7 +171,7 @@ where the second equality follows from the substitution \(r = s(t)\). Hence, the
   \end{align*}
 \end{Eg}
 
-Consider a polynomial \(p(z) = a_0 + a_1 z + \cdots + a_n z^n\). It is an immediate observation that the integral \(\int_{\partial B_r(0)} p(z) \,dz\) is always zero for any \(r > 0\), which somehow indicates that to \(\int_{\partial B_r(0)}\) for power series and ``good functions'' are also zero. Consider the following examples,
+Consider a polynomial \(p(z) = a_0 + a_1 z + \cdots + a_n z^n\). It is an immediate observation that the integral \(\int_{\partial B_r(0)} p\,dz\) is always zero for any \(r > 0\). This somehow indicates to the fact that \ \(\int_{\partial B_r(0)} f \,dz= 0\) for some other ``good'' functions $f$, which exhibit a polynomial like behavior. The obvious guesses are functions which a power series expansion around a neighbourhood, i.e., analytic functions. This and much more will turn out to be true, but for now, we look at some other examples.
 
 \begin{Eg}{}{}
   Let \(\gamma\) be the line joining \(1\) and \(1+2i\), which can be parametrized as \(\gamma(t) = 1 + 2it\) for \(0 \leq t \leq 1\). Then, we compute the integral of \(f(z) = z^2\) over \(\gamma\) as,
@@ -218,6 +201,6 @@ Consider a polynomial \(p(z) = a_0 + a_1 z + \cdots + a_n z^n\). It is an immedi
   \]
 \end{Eg}
 
-The integer \(n\) in the above example is called the \textbf{winding number}\index{Winding number} of the curve \(\gamma\) around \(0\), which is a topological invariant and is studied in detail in index theory.
+The integer \(n\) in the above example is called the \textbf{winding number}\index{Winding number} of the curve \(\gamma\) around \(0\), which is a topological invariant and is the starting point of index theory.
 
 \end{document}
