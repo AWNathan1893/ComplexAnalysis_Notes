@@ -1,0 +1,203 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+
+\begin{document}
+\chapter*{Lecture 8} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 8} %Set chapter title
+\setcounter{chapter}{8} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+\section{Consequences of analyticity of holomorphic functions}
+
+Recall the main result from the last lecture: if \( f \in \textsf{Hol}(\mathcal{O}) \), where \( \mathcal{O} \) is an open subset of \( \mathbbm{C} \), and \( \overline{B_r(z_0)} \subseteq \mathcal{O} \), then
+\[ 
+ f(z) = \sum_{n=0}^{\infty} a_n (z-z_0)^n, \quad \forall \, z \in B_r(z_0)
+ \]
+ where 
+ \[ 
+  a_n = \frac{f^{(n)}(z_0)}{n!} = \frac{1}{2\pi i} \oint_{C_r(z_0)} \frac{f(\zeta)}{(\zeta-z_0)^{n+1}} \dd{\zeta}.
+  \]
+
+We now use focus on some important consequences of this result.
+
+\begin{Thm}{Cauchy's Inequality}{cauchy_ineq}
+ Let \( f \in \textsf{Hol}(\mathcal{O}) \) and \( \overline{B_r(z_0)} \subseteq \mathcal{O} \). Then, for all \( n \geq 1 \),
+ \[ 
+  \abs{f^{(n)}(z_0)} \leq \frac{n!}{r^n} \norm{f}_{C_r(z_0)}\ ,
+  \]
+  where we define
+  \[ 
+   \norm{f}_X = \sup_{z \in X} \abs{f}.
+   \]
+ \end{Thm}
+
+\begin{proof} 
+ We have,
+ \begin{align*}
+  \abs{f^{(n)}(z_0)}
+  &= \frac{n!}{2\pi } \abs{\oint_{C_r(z_0)} \frac{f(\zeta)}{(\zeta-z_0)^{n+1}} \dd{\zeta}} \\
+  &\leq \frac{n!}{2\pi } \sup_{z \in C_r(z_0)} \abs{\frac{f(z)}{(z-z_0)^{n+1}}} \ell(C_r(z_0)) \tag{triangle inequality}
+ \end{align*}
+ We now use the fact that \( \abs{z-z_0} = r \) for \( z \in C_r(z_0) \) and \( \ell(C_r(z_0)) = 2\pi r \) to get
+ \[ 
+  \abs{f^{(n)}(z_0)} \leq \frac{n!}{r^n} \norm{f}_{C_r(z_0)}
+  \]
+  as was required.
+ \end{proof}
+
+\begin{Thm}{Liouville's theorem}{liouv}
+ Let \( f \) be a bounded and entire function, i.e, \( f \in \textsf{Hol}(\mathbbm{C}) \). Then, \( f \) is constant.
+ \end{Thm}
+
+\begin{proof} 
+ We use Theorem \ref{th:cauchy_ineq} for \( f' \). Fix \( z_0 \in \mathbbm{C} \) and \( r > 0 \). As \( \overline{B_r(z_0)} \subseteq \mathbbm{C} \), we have
+ \[ 
+  \abs{f'(z_0)} \leq \frac{1}{r} \norm{f}_{C_r(z_0)} \leq \frac{\norm{f}_{\infty}}{r}.
+  \]
+  As \( r \) is an arbitrary positive real, we get \( f'(z_0) = 0 \) for all \( z_0 \in \mathbbm{C} \). Hence, \( f \) is constant.
+ \end{proof}
+\pagebreak
+
+\textbf{Remarks}: \begin{enumerate}[label = (\arabic*)]
+  \item As \( \sin z, \cos z \) are non-constant entire functions, they are not bounded on \( \mathbbm{C} \).
+  \item The theorem is false for \( \mathbbm{R}^n \), as there are analytic functions (e.g, \( \sin x \)) that are bounded and non-constant.
+\end{enumerate}
+
+We now give a rather slick proof of one of the most useful and ubiquitous results in all of ,mathematics, the fact that \( \mathbbm{C} \) is algebraically closed.
+
+\begin{Thm}{Fundamental Theorem of Algebra}{}
+ Let \( p \in \mathbbm{C}[z] \) be non-constant. Then, there exists \( z_0 \in \mathbbm{C} \) such that \( p(z_0) = 0 \).
+ \end{Thm}
+
+\begin{proof} 
+ Suppose no such \( z_0 \) exists. Then, \( \frac{1}{p} \) is an entire function. If \( p(z) = \sum_{n=0}^{d}a_nz^n \) for complex numbers \( a_n \), then we get
+ \[ 
+  \frac{1}{p(z)} = \frac{1}{z^d} \frac{1}{\sum_{n=0}^{d}a_{n}z^{n-d}} \xrightarrow{z \to \infty} 0
+  \]
+  Therefore, \( \frac{1}{p} \) is bounded for \( \abs{z} > R \), for some \( R > 0 \), and as \( \frac{1}{p} \) is entire and in particular continuous, it attains a finite supremum on \( \overline{B_R(0)} \). So, \( \frac{1}{p} \) is a bounded entire function, and hence must be constant by Theorem \ref{th:liouv}. This contradicts the assumption that \( p \) is non-constant, and hence, some root \( z_0 \) of \( p \) exists in \( \mathbbm{C} \).
+ \end{proof}
+
+Recall Theorem \ref{thm:4.2} that if \( f \in C(\mathcal{U}) \) for some open convex set \( \mathcal{U} \) and \( \oint_{\partial\Delta} f = 0 \) for all \( \Delta \subseteq \mathcal{U} \), then there exists \( g \in \textsf{Hol}(\mathcal{U}) \) such that \( g' = f \). One corollary of this is that any such function \( f \) must be holomorphic on the set \( \mathcal{U} \). A stronger version of this result is the following.
+
+\begin{Thm}{Morera's theorem}{morera}
+ Let \( \mathcal{O} \subseteq \mathbbm{C} \) be any open set, and \( f \in C(\mathcal{O}) \). Then, \( f \in \textsf{Hol}(\mathcal{U}) \) if and only if \( \oint_{\partial \Delta} f = 0 \) for all \( \Delta \subseteq \mathcal{O} \).
+ \end{Thm}
+
+\begin{proof} 
+ If \( f \in \textsf{Hol}(\mathcal{O}) \), we get \( \oint_{\partial \Delta} f = 0 \) for all \( \Delta \subseteq \mathcal{O} \) by Cauchy's integral theorem. 
+ \smallskip
+
+ Conversely, suppose that \( \oint_{\partial \Delta} f = 0 \) for all \( \Delta \subseteq \mathcal{O} \). Then, as any \( \Delta \subseteq \mathcal{O} \) is a closed convex set, we get an open convex set \( \mathcal{U} \) containing \( \Delta \) which is also contained in \( \mathcal{O} \). Over \( \mathcal{U} \), we apply Theorem \ref{thm:4.2} and get a local primitive of \( f \). In particular, \( f \in \textsf{Hol}(\mathcal{U}) \). Therefore, as \( f \) is holomorphic at each point of \( \mathcal{O} \), we get \( f \in \textsf{Hol}(\mathcal{O}) \) and so we are done.
+ \end{proof}
+
+\begin{Thm}{}{hol_unif}
+ \, Let \( \qty{f_n}_{\mathbbm{N}} \subseteq \textsf{Hol}(\mathcal{O}) \). Suppose \( f_n \to f \)  uniformly. Then, \( f \in \textsf{Hol}(\mathcal{O}) \).
+ \end{Thm}
+
+\textbf{Remarks}:\begin{enumerate}[label = (\arabic*)]
+  \item We define \( f_n \to f \) uniformly on an open set, if the convergence is uniform on any compact subset of the open set.
+  \item The result fails miserably for \( \mathbbm{R} \)! For example, the Weierstrass approximation theorem says \( \overline{\mathbbm{R}[x]} \simeq C([0,1], \mathbbm{R}) \), that is, \textit{any} continuous function can be approximated uniformly by polynomial functions, which are not just smooth but in fact their derivatives vanish after some finite order.
+\end{enumerate}
+
+\begin{proof} 
+By uniform convergence, \( f \in C(\mathcal{O}) \). Fix \( \Delta \subseteq \mathcal{O} \). As \( f_n \in \textsf{Hol}(\mathcal{O}) \), we get by Morera's theorem that \( \oint_{\partial\Delta} f = 0 \). But,
+\[ 
+ \oint_{\partial\Delta} f = \oint_{\partial\Delta} \lim_{n \to \infty} f_n = \lim_{n \to \infty} \oint_{\partial\Delta} f_n = 0
+ \]
+ and so by Morera's theorem again, \( f \in \textsf{Hol}(\mathcal{O}) \).
+\end{proof}
+
+\begin{Thm}{}{}
+ \, Let the same assumptions hold as Theorem \ref{th:hol_unif}. Then, for all \( k \geq 1 \),
+ \[ 
+  f_n^{(k)} \to f^{(k)} 
+  \]
+  uniformly on \( \mathcal{O} \).
+ \end{Thm}
+
+\begin{proof} 
+ It is clearly enough to show the result for \( k=1 \), that is, \( f_n' \to f' \) uniformly. Further, it is enough to show that \( f_n' \to f' \) uniformly on the closed discs \( \overline{B_r(z_0)} \subseteq \mathcal{O} \). Fix \( r, z_0 \) and \( \delta \) small such that
+ \[ 
+  \overline{B_r(z_0)} \subseteq \overline{B_{r+\delta}(z_0)} \subseteq \mathcal{O}.
+  \]
+  Consider \( z \in \overline{B_r(z_0)} \) and let \( C \) be a circle of radius \( R \) centered at \( z \). Assume \( \frac{\delta}{2} < R < \delta \) so that \( C \subseteq \mathcal{O} \). By Theorem \ref{th:cauchy_ineq},
+  \begin{align*}
+     \abs{(f_n - f)'(z)} 
+     &\leq \frac{1}{R}\norm{f_n-f}_C \\
+     \implies \abs{(f_n - f)'(z)} 
+     &< \frac{1}{\delta} \norm{f_n-f}_C \\
+     \implies \abs{(f_n - f)'(z)} 
+     &< \frac{1}{\delta} \norm{f_n-f}_{\overline{B_{r+\delta}(z_0)}} \\
+     \implies \norm{f_n'-f'}_{\overline{B_r(z_0)}}
+     &\leq \frac{1}{\delta} \norm{f_n-f}_{\overline{B_{r+\delta}(z_0)}}
+  \end{align*}
+  As \( f_n \to f \) uniformly, we get that \( f_n' \to f' \) uniformly from the above inequality.
+ \end{proof}
+
+\section{Zeroes of Analytic Functions}
+Let \( \mathcal{O} \) be an open subset of \( \mathbbm{C} \), \( f \in \textsf{Hol}(\mathcal{O}) \). We define the set of zeroes of \( f \),
+\[ 
+ \mathcal{Z}(f) = \qty{z \in \mathcal{O} \mid f(z) = 0}
+ \]
+Let \( z_0 \in \mathcal{Z}(f) \). Consider the power series of \( f \) near \( z_0 \),
+\[ 
+ f(z) = \sum_{n\geq m} a_n (z-z_0)^n
+ \]
+We have the following two cases:
+\begin{enumerate}[label = (\roman*)]
+  \item There exists \( m_0 \in \mathbbm{N} \) such that \( a_n = 0 \) for all \( n < m_0 \) and \( a_{m_0} \neq 0 \).
+  \smallskip
+
+  \begin{Def}{Order of a zero}{}
+   In this case, we define that \( z \) is a zero of \( f \) of (finite) order \( m_0 \), and write \( \textsf{Ord}(f;z_0) = m_0 \).
+   \end{Def}
+
+   We have in this case, for \( z \in B_r(z_0) \),
+   \[ 
+    f(z) = (z-z_0)^{m_0}g(z),
+    \]
+where \( g(z_0) \neq 0 \) and \( g \in \textsf{Hol}(B_r(z_0)) \). As \( g \in C(B_r(z_0)) \) in particular, there is \( r' \leq r \) such that \( g(z) \neq 0 \) for all \( z \in B_{r'}(z_0) \). Therefore, \( f(z) \neq 0 \) for all \( z \in B_{r'(z_0)} \setminus \qty{z_0} \). We have thus proved the following theorem:
+
+\begin{Thm}{}{}
+ \, Let \( f \in \textsf{Hol}(\mathcal{O}) \) for \( \mathcal{O} \) a domain. If \( z_0 \in \mathcal{Z}(f) \) is a finite order zero of \( f \), \( z_0 \) is an isolated point of \( \mathcal{Z}(f) \).
+ \end{Thm}
+\pagebreak
+ 
+ \item \( a_n = 0 \) for all \( n \geq 0 \). 
+ \smallskip
+
+ \begin{Def}{}{}
+  In this case, we define that \( z \) is a zero of \( f \) of infinite order.
+  \end{Def}
+
+  We have in this case, \( f \equiv 0 \) on \( B_r(z_0) \) for some \( r > 0 \). This proves the following theorem.
+  \begin{Thm}{}{}
+   \, The set
+   \[ 
+    \widetilde{\mathcal{O}} = \qty{z \in \mathcal{Z}(f) \mid z \text{ an infinite zero of } f}
+    \]
+    is open.
+   \end{Thm}
+\end{enumerate}
+
+The following theorem is an easy consequence of the above results but it is a immensely useful result by itself.
+
+\begin{Thm}{Nature of zeroes}{}
+ \, Let \( f \in \textsf{Hol}(\mathcal{O}) \) with \( \mathcal{O} \) a domain in \( \mathbbm{C} \) and suppose \( f \) is not identically zero. Then all zeroes of \( f \) are of finite order and are isolated.
+ \end{Thm}
+
+ \begin{proof} 
+  We know \( \widetilde{\mathcal{O}} \) is open. We will show that it is also closed. Consider \( z_0 \in \mathcal{O} \setminus \widetilde{\mathcal{O}} \). Then, there is \( m \geq 0 \) such that \( f^{(m)}(z_0) \neq 0 \). By continuity, there is \( R > 0 \) such that \( f^{(m)}(z) \neq 0 \) for all \( z \in B_R(z_0) \subseteq \mathcal{O} \setminus \widetilde{\mathcal{O}} \). Hence, \( \widetilde{\mathcal{O}} \) is a clopen set, and as it is not the full set \( \mathcal{O} \), it must be empty. Therefore, all zeroes of \( f \) are of finite order, and they are isolated by the above results.
+  \end{proof}
+
+\begin{Cor}{}{}
+ Let \( f \in \textsf{Hol}(\mathcal{O}) \), \( \mathcal{O} \) a domain. If \( \mathcal{Z}(f) \) has a limit point in \( \mathcal{O} \), then \( f \equiv 0 \).
+ \end{Cor}
+
+ The above result can be restated as follows:
+ \begin{Thm}{Identity theorem}{ident}
+  \, Suppose \( f,g \in \textsf{Hol}(\mathcal{O}) \), \( \mathcal{O} \) a domain. If \( f = g \) on \( X \subseteq \mathcal{O} \) which has a limit point in \( \mathcal{O} \), then \( f = g \) on all of \( \mathcal{O} \).
+  \end{Thm}
+
+\end{document}
