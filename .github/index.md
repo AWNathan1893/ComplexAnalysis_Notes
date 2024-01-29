@@ -35,6 +35,7 @@ Get full [Complex Analysis notes](./pdfs/ComplexAnalysis_Notes.pdf) by [Jaydeb S
 - [Lecture 2](./pdfs/lec-02.pdf)
 - [Lecture 3](./pdfs/lec-03.pdf)
 - [Lecture 4](./pdfs/lec-04.pdf)
+- [Lecture 5](./pdfs/lec-05.pdf)
 - [Lecture 8](./pdfs/lec-08.pdf)
   
 [Download all the PDFs as zip](./ComplexAnalysis_Notes_all_pdfs.zip)
