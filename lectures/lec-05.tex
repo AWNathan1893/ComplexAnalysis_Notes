@@ -21,7 +21,7 @@ which is nothing but the statement of Green's theorem. We now return to \( \math
 \[ 
  \oint_\gamma f \dd{z} = \qty(\oint_\gamma u \dd{x} - v \dd{y}) + i\qty(\oint_\gamma v \dd{x} + u \dd{y}) 
  \]
- Using Stokes's theorem on the two integrals on the right we get,
+ Using Stokes's theorem on the two integrals on the right we get, [$\Sigma_{\gamma}$ is the capping surface of $\gamma$, in some lecture we have used the notion of capping surface as $\operatorname{int}\, (\gamma)$]
  \[ 
   \oint_\gamma f \dd{z} = \iint_{\Sigma \gamma} \qty(-\pdv{v}{x}-\pdv{u}{y})\dd{x}\dd{y} + i \iint_{\Sigma \gamma} \qty(\pdv{u}{x}-\pdv{v}{y})\dd{x}\dd{y} = 0
   \]
@@ -56,11 +56,11 @@ for any \( z_0 \in \mathbbm{C} \). We now generalise this result to the followin
   \frac{1}{2\pi i} \oint_C \frac{f(\zeta)}{\zeta-z}\dd{\zeta} = 0.
  \]
 
-\begin{wrapfigure}{r}{0mm}
-\centering 
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{figure}[htbp]
+  \centering 
+  \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1][thbp]
+  \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,535); %set diagram left start at 0, and has height of 535
 
 %Shape: Circle [id:dp07184970632773247] 
@@ -124,7 +124,7 @@ $\displaystyle C_{\varepsilon }$
 
   \end{tikzpicture}
 
-\end{wrapfigure}
+\end{figure}
  
 
 \begin{proof} 
