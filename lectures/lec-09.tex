@@ -1,0 +1,67 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+\myexternaldocument{./lec-04}
+
+\begin{document}
+\chapter*{Lecture 9} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 9} %Set chapter title
+\setcounter{chapter}{9} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+Recall in last lecture we proved `\textbf{Identity theorem}'. If $f \in \Hol(\mathcal{O})$ and if the zero set $Z(f)$ has limit point, then $f$ is identically $0$ over $\mathcal{O}$. For example, 
+
+\vspace*{0.2cm}
+
+\noindent \textbf{Example-} $f(z) = \sin \frac{1+z}{1-z}$, $z \in \bb{D}$, it is $0$ when ever, $(1+z)/(1-z) = 2n \pi$ for integer $n$, i.e. $z = \frac{n\pi -1}{n \pi +1}$. This is a countable set and this sequence, do not have any limit point in $\bb{D}$. 
+
+\begin{Thm}{Cauchy Integral theorem for simply connected domain}{}
+    Let $f \in \Hol (\mathcal{O})$. Then for any piece-wise smooth and closed curve $\gamma$, $$\oint_{\gamma}f(z) \, dz =0$$
+\end{Thm}
+
+\noindent \textit{Proof.} We know $f$ is $C^1$ as it is holomorphic. We can use Green's theorem to get, $$\oint_{\gamma}f\, dz = 2 \int_{\Sigma_{\gamma}} \bar{\partial}f \, dx \, dy$$  Since $f \in \Hol (\mathcal{O})$ we have, $\bar{\partial}f =0$ and thus the integral is zero. $\hfill \blacksquare$
+
+
+
+ \textcolor{violet}{\textsc{Remark :}} The roots of holomorphic functions are in some sense `equivalent' to roots of polynomials.
+
+ \begin{Thm}{Maximum Modulus Principle ;MMP}{}
+   Let, $f \in \Hol(\mathcal{O})$, where $\mathcal{O}$ is domain and $\abs{f(z)} \leq \abs{f(\alpha)}$ for some $\alpha \in \mathcal{O}$. Then $f \equiv \text{ constant}$.
+ \end{Thm}
+
+ \noindent \textit{Proof.} Let us consider the set, $C = \qty{z \in \mathcal{O} : \abs{f(z)}=\abs{f(\alpha)}}$. Since, this set is non-empty it is a closed set. Now, we will prove this is open as well, then by connectedness of $\mathcal{O}$ we can say, $C$ is the whole set, and hence $\abs{f}$ is constant over this domain $\Rightarrow f$ is constant.
+
+ \vspace*{0.2cm}
+
+ \noindent \textbf{\textsf{Claim- }} \textit{$C$ is open, i.e. ever point is an interior point.}
+
+ \vspace*{0.1cm}
+
+ \noindent \textit{Proof.} Fix $z_0 \in C$, then there exists $R >0$ such that $B_r(z_0) \subseteq \mathcal{O}$. Consider, $r < R$. Then, \[\abs{f(\alpha)}= \abs{f(z)} = \abs{\frac{1}{2\pi i}\int_{C_r(z_0)}\frac{f(\zeta)}{\zeta -z}\, d \zeta}\] We now convert this in polar form. Define, $\zeta = z +re^{i\theta}, \theta \in [0.2\pi)$. Therefore we have, \begin{align*}
+  \abs{f(\alpha)} &= \frac{1}{2\pi}\abs{\int_{0}^{2\pi}\frac{f(z+re^{i\theta})}{r e^{i \theta}} re^{i\theta}i \, d \theta} \\
+  &= \frac{1}{2\pi} \abs{\int_{0}^{2\pi}f(z+re^{i\theta})\, d\theta} \\
+  &\leq \frac{1}{2\pi} \int_{0}^{2\pi}\abs{f(z+re^{i\theta})}\, d\theta
+ \end{align*}
+\noindent But, $\abs{f(\alpha)}\geq \abs{f(z)}$ for all $z \in \mathcal{O}$. Thus, \(\frac{1}{2\pi}\int_{0}^{2\pi}\qty(\abs{f(\alpha)}-\abs{f(z+re^{i\theta})})\, d \theta \leq 0\). From the above inequality and using continiuity we get $\abs{f(\alpha)}=\abs{f(z+re^{i\theta})}$. As this equality holds for all $r <R$ we can say this equality holds over $B_R(z_0)$. So, $B_R(z_0) \subseteq C$. Thus $C$ is open. With this we have finished the proof of Claim as well as the theorem. $\hfill \blacksquare$
+
+\hspace*{0.2cm}
+
+\hspace*{0.6cm} \textcolor{violet}{\textsc{Corollary}.}  \textit{Let, $f\in \Hol (\mathcal{O})$ and in this open set $f(z)\neq 0$ for all $z$. Suppose, $\abs{f(z)}\geq \abs{f(\alpha)}$, for all $z$. Then $f$ is constant on this domain.} [For proof just use MMP on $1/{f}$]
+
+\begin{Thm}{Open Mapping Theorem}{}
+  Let $f$ is a holomorphic function on $\mathcal{O}$ and let it be a non-constant function. Then $f$ is an open map.
+\end{Thm}
+
+\noindent \textit{Proof.} (\textsc{Caratheodory}) Let, $\tilde{\mO} \subseteq \mO$ open. To prove $\mO$ is open pick $\alpha \in \tilde{\mO}$ and WLOG $f(\alpha)=0$ contained in $f(\tilde{\mO})$.
+
+\vspace*{0.2cm}
+
+\noindent \textbf{\textsf{Claim- }} \textit{There exist $\varepsilon>0$ such that $B_{\varepsilon}(0)\subseteq f(\tilde{\mO})$ for some $\veps>0$. }
+
+\vspace*{0.1cm}
+
+\noindent \textit{Proof.} As $f\neq$ constant, there exist a disc $\tilde{D}$ containing $\alpha$ such that $\tilde{D}\subseteq \tilde{\mO}$ and $0 \notin f(\tilde{D}\setminus \qty{\alpha})$. Evidently $f(\tilde{D})\subseteq f(\tilde{\mO})$. Thus enough to prove that for any such disc, there exist $B_{\varepsilon}(0) \subseteq f(\tilde{D})$. There exists a circle $C$ centered at $\alpha$ such that $C \subseteq \tilde{D}\setminus \alpha$. Set, $\veps := 1/2 \inf \qty{\abs{f(z)}:z \in C}>0$. Set, $D = \Sigma_{C}$ enough to show that $B_{\veps}(0) \subseteq D$. Now, fix $w \in B_{\veps}(0)$ (in other words $\abs{w}<\veps$). Define $\eta(z):= f(z)-w$, for all $z$ in the set $D$. Enough to prove, $\eta$ has zero in $D$. We know, $\eta \in \Hol(D \subseteq \text{ domain })$. Now $\abs{\eta(\alpha)}<\veps$. Also, $z \in C$, $\abs{\eta(z)}\geq \abs{f(z)}-\abs{w} > \veps$. The MMP states that maxima or minima must occur at boundary. This is a contradiction !! The $\eta$ has a zero in the set $D$, which completes the proof. $\hfill \blacksquare$
+ 
+\end{document}
+
+
