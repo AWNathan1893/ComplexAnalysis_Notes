@@ -19,3 +19,4 @@ git clone https://github.com/AWNathan1893/ComplexAnalysis_Notes
 - [x] Lecture 7
 - [x] Lecture 8
 - [x] Lecture 9
+- [ ] Lecture 10
