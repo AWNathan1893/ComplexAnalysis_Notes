@@ -1,0 +1,164 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+\myexternaldocument{lec-05}
+
+\begin{document}
+\chapter*{Lecture 6} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 6} %Set chapter title
+
+\setcounter{chapter}{6} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+\section{Some Remarks}
+
+In this lecture, we fisrt deal with some basic remarks regarding the Cauchy Integral Formula (Theorem \ref{th:cauchy_formula}). Then we will make some digression to the topic of power series in \(\C\). We start by definng the notion of an entire function.
+
+\begin{Def}{}{}
+  A function \(f: \C \to \C\) is called entire if \(f \in \Hol(\C)\).
+\end{Def}
+
+We give some simple illustrations to get a hold of Cauchy Integral Formula.
+
+\begin{Eg}{}{}
+  To compute \[ \oint_{C_2(0)} \frac{ze^z}{z+i} \dd{z} \]
+  we can use the Cauchy Integral Formula, to get
+  \[
+    \oint_{C_2(0)} \frac{ze^z}{z+i} \dd{z} = 2\pi i (-ie^{-i}) = 2\pi e^{-i}.
+  \]
+\end{Eg}
+
+\begin{Eg}{}{}
+  To compute \[ \oint_{C_2(0)} \frac{ze^z}{z^2 + 1} \dd{z} \]
+  we first note that \(z^2 + 1 = (z+i)(z-i)\). Then we have
+  \begin{align*}
+    \oint_{C_2(0)} \frac{ze^z}{z^2 + 1} \dd{z}
+     & = \oint_{C_2(0)} \frac{ze^z}{(z+i)(z-i)} \dd{z}                                               \\
+     & = \frac{\pi}{2\pi i} \oint_{C_2(0)} \left( \frac{ze^z}{z-i} - \frac{ze^z}{z+i} \right) \dd{z} \\
+     & = \pi \left( ie^i - (-ie^{-i}) \right)                                                        \\
+     & = 2\pi i \cos(1).
+  \end{align*}
+\end{Eg}
+
+
+Now that we are in complex numbers, so we can factor polynomials. For example, we could factorise \(z^2 + 1\) into \((z+i)(z-i)\). This was not possible with \(\R\). So we can break any rational function into a product of linear factors and evaluate the integral using the Cauchy integral formula.
+
+\smallskip
+
+This immediately begs the question: \textit{What are examples of holomorphic functions?} The answer is \textbf{Power series} (\(\C[[X]]\)). In fact these are all functions that are holomorphic.
+
+\smallskip
+
+Before we go into this, let us make a little digression for series in \(\C\).
+
+\section{Series in \texorpdfstring{\(\C\)}{C}}
+
+Given a sequence \(\{\alpha_n\} \subseteq \C\), consider the ``formal sum''
+\begin{equation}\label{eq:formal_sum}
+  \sum_{j = 0}^{\infty} \alpha_n
+\end{equation}
+and define the \textit{partial sums} by
+\[
+  S_n = \sum_{j = 0}^{n - 1} \alpha_n.
+\]
+We say that \eqref{eq:formal_sum} is summable if \(\{S_n\}\) is a convergent sequence in \(\C\). In this case, we define the sum of \eqref{eq:formal_sum} to be \(\lim_{n \to \infty} S_n\). Just like in \(\R\), we can show that if \eqref{eq:formal_sum} is summable (or converges), then \(\{\alpha_n\}\) must converge to \(0\).
+
+\begin{Eg}{}{}
+  For \(z \in \C\), consider the geometric series
+  \[ \sum_{n = 0}^{\infty} \alpha^n \]
+  Then we have the partial sums
+  \[
+    S_n = \sum_{k = 0}^{n - 1} \alpha^k = \frac{1 - \alpha^n}{1 - \alpha}.
+  \]
+  which converges if and only if \(\abs{\alpha} < 1\). In this case, we have
+  \begin{equation}\label{eq:geom_series}
+    \sum_{n = 0}^{\infty} \alpha^n = \frac{1}{1 - \alpha}.
+  \end{equation}
+\end{Eg}
+
+Observe that the LHS of \eqref{eq:geom_series} is defined on \(B_1(0)\) but the RHS is defined on \(\C \setminus \{1\}\). This points to the notion of analytic continuation, which we will discuss in next lecture.
+
+We now define the notion of absolute convergence in \(\C\).
+
+\begin{Def}{Absolute Convergence}{abs_conv}
+  The series \(\sum_{n = 0}^{\infty} \alpha_n\) is said to be absolutely convergent if \(\sum_{n = 0}^{\infty} \abs{\alpha_n}\) is convergent.
+\end{Def}
+
+This immediately raises the question: \textit{What is the relationship between absolute convergence and convergence in \(\C\)?} The answer is infact similar to that in \(\R\) and is given by the following theorem.
+
+\begin{Thm}{Comparison Test}{comptest}
+  Let \(\{\alpha_n\}, \{\beta_n\} \subseteq \C\) be two sequencees such that \(\abs{\alpha_n} \leq \abs{\beta_n}\) for all \(n\). Then, if \(\sum_{n = 0}^{\infty} \beta_n\) converges absolutely then \(\sum_{n = 0}^{\infty} \alpha_n\) also converges absolutely.
+\end{Thm}
+\begin{proof}
+  Exercise.
+\end{proof}
+
+% unif conv
+
+\begin{Def}{Power Series}{power_series}
+  Let \(\{\alpha_n\} \subseteq \C\) be a sequence. Then the series
+  \[
+    \sum_{n = 0}^{\infty} \alpha_n (z - z_0)^n
+  \]
+  is called a power series in \(z\) about \(z_0\) with coefficients \(\{\alpha_n\}\).
+\end{Def}
+
+Without loss of generality, we can assume that \(z_0 = 0\) and consider the series
+\begin{equation}
+  \sum_{n = 0}^{\infty} \alpha_n z^n.
+  \label{eq:power_series}
+\end{equation}
+
+\textbf{Remark.}
+
+\begin{itemize}
+  \item \eqref{eq:power_series} always converges at \(z = 0\).
+  \item If \eqref{eq:power_series} converges at \(z = z' \neq 0\), then it converges absolutely for all \(z\) such that \(\abs{z} \leq \abs{z'}\).
+  \item If \(\sum_{n = 0}^{\infty} \abs{\alpha_n} \abs{z}^n\) diverges at \(z = z'\), then it diverges for all \(\abs{z} \geq \abs{z'}\).
+\end{itemize}
+
+The above remarks raises a natural question: \textit{What is the radius of convergence of \eqref{eq:power_series}?} The answer is given by the following theorem.
+
+\begin{Thm}{}{power_series}
+  Given a power series \( \sum_{n = 0}^{\infty} \alpha_n z^n \), there exists a unique \(R \in [0, \infty]\) (called the redius of convergence) such that
+  \begin{enumerate}[label = (\roman*)]
+    \item The series converges absolutely on \(B_R(0)\) (\(= \C\) if \(R = \infty\)). \label{item:abs_conv}
+    \item The series diverges for all \(z\) such that \(\abs{z} > R\). \label{item:divergence}
+  \end{enumerate}
+  Moreover, we have
+  \begin{enumerate}[label = (\Roman*)]
+    \item \(\frac{1}{R} = \limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}\)
+    \item The series converges uniformly on all compact subsets of \(B_R(0)\), eqiuvalently, For all small \(\epsilon > 0\), the series converges uniformly on \(\overline{B_{R - \epsilon}(0)}\). \label{item:uniform_conv}
+  \end{enumerate}
+\end{Thm}
+
+\textbf{Remark.} If we have a unform convergent sequence of functions \(\{f_n\}\) on a set \(\mO\). Then we say that \(\int_\gamma f_n\) converges to \(\int_\gamma f\) if \(\Im \gamma \subset \mO\). This would follow as \(\int_\gamma\) can be treated as a line integral on \(\R^2\), which in turn becomes a Riemann integral. Here lies one demonstration of the power of \ref{item:uniform_conv} of Theorem \ref{th:power_series}.
+
+\begin{proof}[Proof of Theorem \ref{th:power_series}.]
+  We only prove \ref{item:abs_conv} as similar proof will work for \ref{item:divergence}. We set \[ R = \frac{1}{\limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}} \]
+  and consider the following three cases:
+  \begin{itemize}
+    \item If \(R = 0\), then \(\limsup_{n \to \infty} \sqrt[n]{\abs{a_n}} = +\infty\). So there exists a subsequence of \(\{a_{n}\}\) diverging to \(+\infty\). Without loss of generality, we can assume that \(\{a_{n}\}\) be that subsequence itself. Now fix \(z \neq 0\), then there exists \(N \in \N\) such that for all \(n > N\), \(\sqrt[n]{\abs{a_n}} > \frac{1}{\abs{z}}\), in other words, \(\abs{a_n}\abs{z^n} > 1\). This completes the proof.
+    \item If \(R = +\infty\), then \(\limsup_{n \to \infty} \sqrt[n]{\abs{a_n}} = 0\). So for every \(z \in \C\), \(\limsup_{n \to \infty} \abs{z}\sqrt[n]{\abs{a_n}} = 0\). In other words, there exists \(N \in \N\) such that for all \(n > N\), \(\abs{z}\sqrt[n]{\abs{a_n}} < \frac 12\). This completes the proof by comparison test.
+    \item For \(0 < R < +\infty\), we fix \(z \neq 0\) such that \(\abs{z} < R\). Then there exists \(r > 0\) such that \(\abs{z} < r < R\), or eqiuvalently, \(\frac 1{\abs{z}} > \frac 1r > \frac 1R = \limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}\). So there exists \(N \in \N\) such that for all \(n > N\), \(\abs{a_n} < \frac 1{r^n}\), which yields \(\abs{a_n}\abs{z^n} < \frac{\abs{z^n}}{r^n}\). As \(\frac{\abs{z}}{\abs{r}} < 1\), comparison test shows that \(\sum_{n = 0}^{\infty} \abs{a_n}\abs{z^n}\) converges. This completes the proof.
+  \end{itemize}
+
+  Finally, let \(\epsilon > 0\) be arbitarily small such that \(0 < R - \epsilon < R\), then \(\sum_{n \geq N} \abs{a_n}(R - \epsilon)^n \to 0\) as \(N \to \infty\). So for every \(z \in B_{R-\epsilon}(0)\), \[ \sum_{n \geq N} \abs{a_n}\abs{z}^n \leq \sum_{n \geq N} \abs{a_n}(R - \epsilon)^n \]
+  This shows the uniform convergence on \(\overline{B_{R - \epsilon}(0)}\).
+\end{proof}
+
+Now we state a improtant lemma connecting the ratio and root tests and the convergence of power series.
+
+\begin{Lem}{}{ratio_root}
+  Let \(\{a_n\} \subseteq \C\) be a sequence. Then we have the following,
+  \[
+    \liminf_{n \to \infty} \frac{\abs{a_{n+1}}}{\abs{a_n}} \leq \liminf_{n \to \infty} \sqrt[n]{\abs{a_n}} \leq \underbrace{\limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}}_{\frac 1R} \leq \limsup_{n \to \infty} \frac{\abs{a_{n+1}}}{\abs{a_n}}.
+  \]
+\end{Lem}
+\begin{proof}
+  Exercise.
+\end{proof}
+
+So whenever \(\lim_{n \to \infty} \frac{\abs{a_{n+1}}}{\abs{a_n}}\) exists we can easily compute the radius of convergence of the power series. In the next lecture, we will illustrate some simple examples of power series and their radius of convergence and then complete our discussion on the power series.
+
+\end{document}
