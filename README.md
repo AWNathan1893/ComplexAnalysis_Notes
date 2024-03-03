@@ -8,14 +8,15 @@ Scribed notes of the [Complex Analysis](https://www.isibang.ac.in/~adean/infsys/
 git clone https://github.com/AWNathan1893/ComplexAnalysis_Notes
 ```
 
-### Lecture Scribed
+### Lectures Scribed
 
 - [x] Lecture 1
 - [x] Lecture 2
 - [x] Lecture 3
 - [x] Lecture 4
 - [x] Lecture 5
-- [ ] Lecture 6
-- [ ] Lecture 7
+- [x] Lecture 6
+- [x] Lecture 7
 - [x] Lecture 8
 - [x] Lecture 9
+- [ ] Lecture 10
