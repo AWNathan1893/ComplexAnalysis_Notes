@@ -1,0 +1,74 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+\myexternaldocument{./lec-04}
+
+\begin{document}
+\chapter*{Special lecture -2} %Set chapter name
+\addcontentsline{toc}{chapter}{Special lecture -2} %Set chapter title
+\setcounter{chapter}{14} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+Recall the Bloch's theorem. We will look at few corollary of this theorem.
+
+\vspace*{0.2cm}
+
+\hspace*{0.6cm} \textcolor{violet}{\textsc{Corollary}.} \textit{If $f$ is holomorphic in domain $G$, $f'(c)\neq 0$ means $f(G)$ contains a disc of radii $$\frac{1}{12}s\abs{f'(c)}$$}
+
+\section*{Towards little Picard}
+
+\begin{Lem}{}{}
+    Let, $G \subseteq \C$ simply-connected domain, let $f \in \Hol(G)$ and it's image con't contain $-1,1$, then $f = \cos F$ for some holomorphic $f$.
+\end{Lem}
+
+\textbf{Proposition} Let $G \subseteq \C$ be a simply connected domain, $f(G)$ don't contain $0,1$ then there exist $g \in \Hol(G)$ such that, $$f(z)= \frac{1+\cos(\cos \pi g)}{2}$$ and image of $G$ does not contain any disc of radius $1$.
+    
+\vspace*{0.2cm}
+
+\noindent If we take $f$ to be as the thing given above, since $f$ misses $0,1$, $2f-1$ will miss $-1,1$. Now consider a set, $$\mathbf{A} = \qty{m \pm i \frac{\log (n + \sqrt{n^2-2})}{\pi} : n \geq 2, m \in Z}$$ This set will intersect disc of radius $1$. But we will show $g(G) \cap \mathbf{A}= \emptyset$. Take $a \in \mathbf{A}$ and $a = m \pm i \frac{\log (n + \sqrt{n^2-2})}{\pi}$ so we will have \begin{align*}
+    \cos \pi a &= (-1)^m n\\
+    f(a) &= \frac{1+(-1)^n}{2}
+\end{align*} And hence it don't contain any disc of radius $1$. $\hfill \blacksquare$
+
+\vspace*{0.2cm}
+
+\hspace*{0.6cm} \textcolor{violet}{\textsc{Corollary}.} \textit{$f$ is an entire function that does not fix any point then $f \circ f$ has a fixed point unless $f(z)=z+b$}
+
+\textit{Proof.} Consider the function, $g(z) = \frac{f\circ f (z)-z}{f(z)-z}$ misses $0$ and $1$, hence by Picard theorem we can say it is a constant function. Thus, \begin{align*}
+    f(f(z))-z & =c(f(z)-1) \\
+    \Rightarrow f'(f(z))f'(z) - 1& = c ( f'(z)-1) \\
+    \Rightarrow f'(z)(f'(f(z))-c) &= 1-c
+\end{align*}
+(complete the proof)
+\vspace*{0.2cm}
+
+\hspace*{0.6cm} \textcolor{violet}{\textsc{Corollary}.} \textit{If $f$ and $g$ are entire and $f^n+g^n=1$ then $f,g$ are either constant or they have common poles.}
+
+\textit{Proof.}
+
+\section*{Proof of Bloch's Theorem}
+
+\subsection*{Lemma 1} Let, $G \subseteq \C$ bounded and $f: G \to \C$ continuous suppose $f|_G$ is open. Let, $a \in G$ be such that $s = \min_{s \in \partial G} \abs{f(z)-f(a)}$ then $f(G)\subseteq B(f(a),s)$
+
+\noindent \textit{Proof.} It is an exercise from Topology.
+
+\subsection*{Lemma 2}
+
+Let, $V = B(a,r)$ and let $f \in \Hol(V)$ be non-constant. If $\norm{f'}_V \leq 2\abs{f'(a)}$, then $$f(V)\supseteq B(f(a),R)$$ where $R = (3-2\sqrt{2})r \abs{f(a)}$. 
+
+\vspace*{0.2cm}
+
+\noindent \textit{Proof.}  Consider the following function $$A(z)=f(z)-f'(0)z = \int_{[0,z]} (f'(w)-f'(z))dw$$ Using Cauchy Integral formula we can say, $$f'(v)-f'(0) = \frac{v}{2\pi i} \oint_{\partial V} \frac{f'(w)}{w(w-v)} dw$$
+
+Now we have, 
+\begin{align*}
+    \abs{A(z)} &\leq\int_{0}^{1} \abs{f'(zt)-f'(0)}\abs{z} \, dt \\
+    &\leq \int_0^1  \frac{\abs{zt}\norm{f}_V}{r-\abs{zt}} \abs{z} \, dt\\
+    & \leq \frac{\abs{z}^2}{(r-\abs{z})} \norm{f'}_{V}
+\end{align*}
+This $0 <\rho <r$, for $\abs{z}=\rho$, $\abs{f(z)} \geq \qty(\rho - \frac{\rho^2}{r-\rho})\abs{f'(0)}$
+
+\subsection*{Main Proof}
+Let, $f \in \Hol(E)$ it means $f(E)\supseteq B(f(a),(3/2-2\sqrt{2})M)$. Note, $\abs{f'(z)}(1-\abs{z})$ is continuous on $\bar{E}$. Suppose $p\in E$ be the maxima point of the above function. And let $M$ be the maximum then $(3/2-\sqrt{2})M > 1/12 \abs{f'(0)}$. Let, $t = \frac{1-\abs{p}}{2}$, this means $M = 2t \abs{f'(p)}$ also $B(p,t) \subseteq E$ and $1-\abs{z}\geq t$ (via triangle inequality)
+
+\end{document}
