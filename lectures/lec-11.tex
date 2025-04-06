@@ -1,0 +1,132 @@
+\documentclass[../ComplexAnalysis_Notes.tex]{subfiles}
+
+\begin{document}
+\chapter*{Lecture 11} %Set chapter name
+\addcontentsline{toc}{chapter}{Lecture 11} %Set chapter title
+\setcounter{chapter}{11} %Set chapter counter
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+
+Recall in the last lecture we discussed about Laurent series
+\[
+  \sum_{n \in \Z} a_n (z - z_0)^n,
+\]
+and which converges uniformly on compact subsets of the annulus
+\[
+  A_{R_1, R_2}(z_0) = \qty{ z \in \C \mid R_1 < \abs{z - z_0} < R_2 }.
+\]
+where \(R_1\) and \(R_2\) are given by,
+\begin{equation} \label{eq:lsorc}
+  R_1 = \limsup_{n \to \infty} \sqrt[n]{\abs{a_{-n}}}, \text{ and } R_2 = \frac{1}{\limsup_{n \to \infty} \sqrt[n]{\abs{a_n}}}.
+\end{equation}
+
+Natural question arises, if a function \(f \in \Hol(A_{R_1, R_2}(z_0))\), then does it have a Laurent series expansion? The answer is yes, and we will prove this in this lecture.
+
+\
+
+\textbf{Remark.} Consider the Laurent series \(f(z) = \sum_{n \in \Z} a_n (z - z_0)^n\) on \(A_{R_1, R_2}(z_0)\). Then, we fix \(r \in (R_1, R_2)\) and consider,
+\begin{align*}
+  \int_{C_r(z_0)} f(z) \dd{z}
+   & = \sum_{n = -\infty}^{\infty} a_n \int_{C_r(z_0)} (z - z_0)^n \dd{z}                                                               \\
+   & = \sum_{n = 0}^{\infty} a_n \underbrace{\int_{C_r(z_0)} (z - z_0)^n \dd{z}}_{0,\, \text{by Cauchy's Theorem}}                      \\
+   & \quad + a_{-1} \int_{C_r(z_0)} \frac{1}{z - z_0} \dd{z}                                                                            \\
+   & \quad + \sum_{n = 2}^{\infty} a_{-n} \underbrace{\int_{C_r(z_0)} (z - z_0)^{-n} \dd{z}}_{0,\, \text{by Cauchy's Integral Formula}} \\
+   & = 2\pi i\, a_{-1}.
+\end{align*}
+
+In other words, we have,
+\[
+  a_{-1} = \frac{1}{2 \pi i} \int_{C_r(z_0)} f(z) \dd{z}.
+\]
+This coefficient is very important, and carries some meaning. It is called the \textit{residue} of \(f\) at \(z_0\). We will see this for general \(\C \to \C\) functions in later lectures.
+
+Following the above computation, we can also compute the other coefficients, i.e., for all \(n \in \N\),
+\[
+  a_n = \frac{1}{2 \pi i} \int_{C_r(z_0)} \frac{f(z)}{(z - z_0)^{n + 1}} \dd{z}.
+\]
+for every \(r \in (R_1, R_2)\). In particular, if \(f\) is a Laurent series, then it is holomorphic on \(A_{R_1, R_2}(z_0)\), and the coefficients are given by \eqref{eq:lsorc}.
+
+\begin{Def}{Multiply Connected}{mulconn}
+  A domain in \(\C\) is said to be multiply connected if it is not simply connected.
+\end{Def}
+
+We will be interested in \(n\)-holed domains to compute integrals.
+
+\begin{Thm}{}{nholedsum}
+  Let \(\Omega\) be a \(n\)-connected domain, and \(\gamma\) be a simple closed curve enclosing all the \(n\) holes. Let \(\gamma_j\) be a simple closed curve enclosing the \(j^{\text{th}}\) hole, for \(j = 1, \ldots, n\). Then, for any \(f \in \Hol(\Omega)\), we have
+  \[
+    \int_{\gamma} f(z) \dd{z} = \sum_{j = 1}^{n} \int_{\gamma_j} f(z) \dd{z}.
+  \]
+\end{Thm}
+\begin{proof}
+  Proving for \(n = 2\) suffices as the general case follows by induction. We divide \(\Omega\) as in the following figure.
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{../figures/two_circle}
+    \caption{Two circles \(\gamma_1\), \(\gamma_2\) enclosing the holes.}
+    \label{fig:two_circle}
+  \end{figure}
+  
+  Then by this construction, we have
+  \begin{align*}
+    \int_{\gamma} f(z) \dd{z}
+     & = \int_{\gamma_1} f(z) \dd{z} + \int_{\gamma_2} f(z) \dd{z} + \underbrace{\int_{\gamma_3} f(z) \dd{z}}_{0, \text{ by Cauchy's Theorem}} + \underbrace{\int_{\gamma_4} f(z) \dd{z}}_{0, \text{ by Cauchy's Theorem}} \\
+     & = \int_{\gamma_1} f(z) \dd{z} + \int_{\gamma_2} f(z) \dd{z}.
+  \end{align*}
+\end{proof}
+
+\begin{Thm}{Cauchy Integral Formula for Annulus}{}
+  Let \(f \in \Hol(A_{R_1, R_2}(z_0))\) and \(0 < R_1 < r_1 < r_2 < R_2\). Then, for all \(z \in A_{r_1, r_2}(z_0)\), we have
+  \[
+    f(z) = \frac{1}{2\pi i} \int_{C_{r_1}(z_0)} \frac{f(\zeta)}{\zeta - z_0} \dd{\zeta} - \frac{1}{2\pi i} \int_{C_{r_2}(z_0)} \frac{f(\zeta)}{\zeta - z_0} \dd{\zeta}.
+  \]
+\end{Thm}
+\begin{proof}
+  For simplicity, assume \(z_0 = 0\). Pick \(\epsilon > 0\) such that \(\overline{B_{\epsilon}(z)} \subseteq A_{r_1, r_2}(0)\). Then \(\zeta \mapsto \frac{f(\zeta)}{\zeta - z}\) is holomorphic on \(A_{r_1, r_2}(0) \setminus \overline{B_{\epsilon}(z)}\). So using Theorem \ref{th:nholedsum} we get,
+  \[
+    \int_{C_{r_2}(0)} \frac{f(\zeta)}{\zeta - z} \dd{\zeta} = \int_{C_{r_1}(0)} \frac{f(\zeta)}{\zeta - z} \dd{\zeta} + \int_{C_{\epsilon}(z)} \frac{f(\zeta)}{\zeta - z} \dd{\zeta}.
+  \]
+  By Cauchy Integral Formula, we have
+  \[
+    f(z) = \frac{1}{2\pi i} \int_{C_{r_2}(0)} \frac{f(\zeta)}{\zeta - z} \dd{\zeta} - \frac{1}{2\pi i} \int_{C_{r_1}(0)} \frac{f(\zeta)}{\zeta - z} \dd{\zeta}.
+  \]
+  In particular, the same proof gives,
+  \[
+    f^{(n)}(z) = \frac{n!}{2\pi i} \int_{C_{r_2}(0)} \frac{f(\zeta)}{(\zeta - z)^{n + 1}} \dd{\zeta} - \frac{n!}{2\pi i} \int_{C_{r_1}(0)} \frac{f(\zeta)}{(\zeta - z)^{n + 1}} \dd{\zeta}.
+  \]
+\end{proof}
+
+
+\begin{Thm}{}{}
+  Let \(f \in \Hol(A_{R_1, R_2}(z_0))\) and \(C = C_r(z_0) \subseteq A\). Then, for all \(z \in C\), we have
+  \[
+    f(z) = \sum_{n \in \Z} a_n (z - z_0)^n,
+  \]
+  where
+  \[
+    a_n = \frac{1}{2 \pi i} \int_{C} \frac{f(\zeta)}{(\zeta - z_0)^{n + 1}} \dd{\zeta}.
+  \]
+\end{Thm}
+\begin{proof}
+  Fix \(z \in A\), and let \(z_0 = 0\) for simplicity. We choose \(r_1, r_2 > 0\) such that \(z \in A_{r_1, r_2}(0) \subseteq A_{R_1, R_2}(0)\). Then, by Cauchy Integral Formula for Annulus, we have
+  \[
+    f(z) = \frac{1}{2\pi i} \int_{C_{r_1}(0)} \frac{f(\zeta)}{\zeta} \dd{\zeta} - \frac{1}{2\pi i} \int_{C_{r_2}(0)} \frac{f(\zeta)}{\zeta} \dd{\zeta}.
+  \]
+  Note that,
+  \[
+    \frac{1}{\zeta - z}
+    = \begin{cases}
+      \frac{1}{\zeta} \sum_{n = 0}^{\infty} \qty(\frac{z}{\zeta})^n, & \abs{z} < \abs{\zeta},  \\
+      -\frac{1}{z} \sum_{n = 0}^{\infty} \qty(\frac{\zeta}{z})^n,    & \abs{\zeta} < \abs{z}.
+    \end{cases}
+  \]
+  So, we have
+  \[
+    f(z) = \sum_{n = 0}^{\infty} \frac{1}{2\pi i} \int_{C_{r_1}(0)} f(\zeta) \frac{1}{\zeta^{n + 1}} \dd{\zeta} - \sum_{n = 0}^{\infty} \frac{1}{2\pi i} \int_{C_{r_2}(0)} f(\zeta) \frac{1}{\zeta^{n + 1}} \dd{\zeta}.
+  \]
+\end{proof}
+
+
+\end{document}

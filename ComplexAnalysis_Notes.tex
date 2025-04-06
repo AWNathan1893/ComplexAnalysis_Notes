@@ -41,17 +41,17 @@
 \fancyhf{}
 \newcommand*{\justifyheading}{\raggedleft}
 \newcommand{\sectionrule}{%
-   \par
-    \addvspace{\bigskipamount}%
-    \rule[-.4pt]{\dimexpr\textwidth-2cm\relax}{.4pt}\rule[-2mm]{2cm}{2mm}
-    \par
-    \nopagebreak
-    \bigskip
+  \par
+  \addvspace{\bigskipamount}%
+  \rule[-.4pt]{\dimexpr\textwidth-2cm\relax}{.4pt}\rule[-2mm]{2cm}{2mm}
+  \par
+  \nopagebreak
+  \bigskip
 }
 
 \titleformat{\chapter}[display]
-  {\sectionrule\itshape\small\justifyheading}{\chaptertitlename\ \thechapter}
-  {25pt}{\Large}
+{\sectionrule\itshape\small\justifyheading}{\chaptertitlename\ \thechapter}
+{25pt}{\Large}
 
 \fancyhead[RO]{\nouppercase Lecture \thechapter \leftmark}
 \renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ #1}}
@@ -69,8 +69,10 @@
 \subfile{lectures/lec-07}
 \subfile{lectures/lec-08}
 \subfile{lectures/lec-09}
+\subfile{lectures/lec-11}
 \subfile{lectures/splec2}
-\subfile{lectures/lec-18.tex}
+\subfile{lectures/lec-18}
+
 \backmatter
 
 \pagestyle{plain}

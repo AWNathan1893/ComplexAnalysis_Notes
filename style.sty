@@ -1,12 +1,13 @@
 \ProvidesPackage{style}
 
 \usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage[utf8]{inputenc}
 \setlength{\parindent}{0ex}
 \usepackage{microtype}
 \usepackage{physics}
 \usepackage[most]{tcolorbox}
 \usepackage{xparse}
-\usepackage{accents}
+% \usepackage{accents}
 \usepackage{pdfpages}
 \usepackage{wrapfig}
 \usepackage{amsmath}
@@ -19,6 +20,8 @@
 \usepackage[autostyle]{csquotes}
 \usepackage{tikz-cd}
 \usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{thmtools}
 \usepackage{float}
 \usepackage{multicol}
 \usepackage{pgfplots}
@@ -36,7 +39,6 @@
 \usepackage{fancyhdr}
 
 
-
 \usepackage{hyperref}
 \hypersetup{colorlinks = true, linkcolor = blue, urlcolor = cyan}
 
@@ -48,7 +50,7 @@
 
 % Activate externalization!
 % \usepgfplotslibrary{external}
-% \tikzexternalize[prefix=tikz_figures/]
+% \tikzexternalize[prefix=figures/]
 
 
 % Colours (from https://latexcolor.com)
@@ -82,6 +84,23 @@
 \renewcommand{\cfttoctitlefont}{\normalfont\sffamily\Huge\bfseries}
 \renewcommand{\cftchappagefont}{\normalfont\sffamily\bfseries}
 \renewcommand{\cftsecpagefont}{\normalfont\sffamily}
+
+% Theorem styles
+
+\declaretheoremstyle[name=Theorem, headfont={\sffamily\color{darkblue}}, bodyfont={\itshape}]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+
+\declaretheoremstyle[name=Definition, headfont={\sffamily\color{cerulean}}]{defsty}
+\declaretheorem[style=defsty,numberlike=theorem]{definition}
+
+\declaretheoremstyle[name=Corollary, bodyfont={\itshape}, headfont={\sffamily\color{darkblue}}]{corsty}
+\declaretheorem[style=corsty,numberlike=theorem]{corollary}
+
+\declaretheoremstyle[name=Remark, headfont={\sffamily\color{brightmaroon}}]{rmksty}
+\declaretheorem[style=rmksty,numberlike=theorem]{remark}
 
 % Custom environments
 \newtcbtheorem[number within=section]{Def}{Definition}{
@@ -183,7 +202,6 @@
   sharp corners = southwest,
   sharp corners = northeast,
   separator sign none, description delimiters parenthesis}{cor}
-
 
 \newtcbtheorem[number within=section]{Eg}{\textbf{Example}}{
   breakable, enhanced,
