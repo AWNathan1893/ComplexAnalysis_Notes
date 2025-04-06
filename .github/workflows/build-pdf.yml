@@ -33,7 +33,7 @@ jobs:
 
       - name: Cache the pdfs
         id: cache-ra-3
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: pdfs
           key: ComplexAnalysis_Notes-${{ hashFiles('style.sty') }}-${{ hashFiles('**/*tex') }}-${{ hashFiles('**/*pdf_tex') }}-${{ hashFiles('**/*pdf') }}-${{ hashFiles('./latexmkrc') }}
